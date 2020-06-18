@@ -1,0 +1,42 @@
+@font-face {
+	font-family: light;
+	src: url(../Fonts/Nexa-Light.otf);
+}
+
+@font-face {
+	font-family: bold;
+	src: url(../Fonts/Nexa-Bold.otf);
+}
+
+body, html {
+    height: 100%;
+}
+
+h1,h2,h3,p,a {
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-family: bold;
+    font-size: 2rem;
+}
+
+h2 {
+    font-family: bold;
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-family: bold;
+    font-size: 1rem;
+}
+
+p {
+    font-family: light;
+    font-size: .9rem;
+}
+
+input {
+    font-family: bold;
+    font-size: medium;
+}

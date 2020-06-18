@@ -1,0 +1,11 @@
+.login {
+    border: none;
+    background-color: white;
+}
+
+.signup {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: .4rem;
+}
