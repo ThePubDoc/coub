@@ -12,7 +12,7 @@ body, html {
     height: 100%;
 }
 
-h1,h2,h3,p,a {
+h1,h2,h3,h4,p,a {
     letter-spacing: 1px;
 }
 
@@ -29,6 +29,10 @@ h2 {
 h3 {
     font-family: bold;
     font-size: 1rem;
+}
+
+h4 {
+    font-family: bold;
 }
 
 p {

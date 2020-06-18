@@ -1,0 +1,47 @@
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    width: 13%;
+    height: 96vh;
+    background-color: #f7f7f7;
+    text-align: center;
+    overflow: scroll;
+}
+
+.sidenav h3 {
+    margin: 1rem;
+    color: #aaaaaa;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.sidenav .sidenav-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+}
+
+.sidenav .sidenav-items:hover {
+    cursor: pointer;
+    background-color: white;
+}
+
+.sidenav .sidenav-items svg {
+    width: 10%;
+}
+
+.sidenav .sidenav-items p {
+    margin: 0 .5rem;
+    font-size: 1rem;
+    color: #aaaaaa;
+    font-weight: 600;
+}
+.line {
+    content: "";
+    margin: auto;
+    width: 90%;
+    height: 1px;
+    background-color: #aaaaaa;
+    /* border: 1px solid black; */
+}

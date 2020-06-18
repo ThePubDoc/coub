@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Dropdown from './Dropdown';
 import Button from '../Button/Button';
