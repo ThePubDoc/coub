@@ -5,10 +5,11 @@ import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Dropdown from './Dropdown';
 import Button from '../Button/Button';
+import Signup from '../Signup/Signup';
 
 import './Navbar.css'
 
-const Navbar = ({ Logo }) => {
+const Navbar = ({ Logo, overlay, setOverlay }) => {
     return (
         <div className = "navbar">
             <div className = "navbar-elements-container">
@@ -34,12 +35,16 @@ const Navbar = ({ Logo }) => {
                     name = {"Login"}
                     path = {"/login"}
                     classname = {"login"}
+                    overlay = { overlay }
+                    setOverlay = { setOverlay }
                 />
 
                 <Button
                     name = {"Sign up"}
                     path = {"/signup"}
                     classname = {"signup"}
+                    overlay = { overlay }
+                    setOverlay = { setOverlay }
                 />
             </div>
         </div>

@@ -2,9 +2,9 @@ import React from 'react'
 
 import './Button.css';
 
-const Button = ({ name, path, classname }) => {
+const Button = ({ name, classname, overlay, setOverlay }) => {
     return (
-        <button className = { classname }>
+        <button className = { classname } value = {overlay} onClick = {(e) => setOverlay(classname)}>
             <p>{ name }</p>
         </button>
     )

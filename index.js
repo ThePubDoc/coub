@@ -1,12 +1,24 @@
 const express = require('express');
-const e = require('express');
 const app = express();
+const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const mainRoutes = require('./routes/mainRoutes');
+const models = require("./models/index");
+
+models.init();
 
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
-app.use('/', mainRoutes);
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "Your secret key",
+    expires: new Date(Date.now() + 30 * 86400 * 1000)
+  })
+);
+app.use('/api', mainRoutes);
 
 const PORT = 4000;
 
