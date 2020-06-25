@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const compression = require('compression');
 
 const mainRoutes = require('./routes/mainRoutes');
 const models = require("./models/index");

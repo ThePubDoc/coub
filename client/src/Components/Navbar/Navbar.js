@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Dropdown from './Dropdown';
 import Button from '../Button/Button';
-import Signup from '../Signup/Signup';
+import Signup from '../Overlays/Signup';
+import Login from '../Overlays/Login';
 
 import './Navbar.css'
 
-const Navbar = ({ Logo, overlay, setOverlay }) => {
+const Navbar = ({ Logo}) => {
+
+    const [overlay, setOverlay] = useState("none");
+
     return (
         <div className = "navbar">
             <div className = "navbar-elements-container">
-                <img src = { Logo }/>
+                <Link to = "/">
+                    <img src = { Logo }/>
+                </Link>
+                {/* <img src = { Logo }/> */}
                 
                 <div className = "search-coub">
                     <FontAwesomeIcon className = "search" icon = { faSearch }/>
@@ -47,6 +55,8 @@ const Navbar = ({ Logo, overlay, setOverlay }) => {
                     setOverlay = { setOverlay }
                 />
             </div>
+            { overlay === "signup" && <Signup overlay = { overlay } setOverlay = {setOverlay }/> }
+            { overlay === "login" && <Login overlay = { overlay } setOverlay = {setOverlay }/> }
         </div>
     )
 }
