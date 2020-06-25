@@ -95,6 +95,27 @@ const trim = (req,res) => {
                         res.json({"url" : data.Location})
                     }
                 })
+
+                fs.unlink("./converted/"+audio.originalname.split(".")[0]+video.originalname,(err)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                });
+                fs.unlink("./converted/"+video.originalname,(err)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                });
+                fs.unlink("./videos/"+video.originalname,(err)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                })
+                fs.unlink("./audios/"+audio.originalname,(err)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                })
             })
             .saveToFile("./converted/"+audio.originalname.split(".")[0]+video.originalname)
         }
@@ -113,6 +134,16 @@ const trim = (req,res) => {
                 else{
                     console.log(data)
                     res.json({"url" : data.Location})
+                }
+            })
+            fs.unlink("./converted/"+video.originalname,(err)=>{
+                if(err){
+                    console.log(err)
+                }
+            })
+            fs.unlink("./videos/"+video.originalname,(err)=>{
+                if(err){
+                    console.log(err)
                 }
             })
         }
