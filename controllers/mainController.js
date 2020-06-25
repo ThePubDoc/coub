@@ -1,4 +1,17 @@
+require('dotenv').config();
+
 const ffmpeg = require('fluent-ffmpeg');
+const fs = require('fs');
+
+const aws = require('aws-sdk');
+
+aws.config.update({
+    secretAccessKey: process.env.AWS_Secret_Access_Key,
+    accessKeyId: process.env.AWS_Access_Key_ID,
+    region: process.env.region,
+});
+
+const s3 = new aws.S3();
 
 const index = (req,res) => {
     res.json({msg : "Hello"});
@@ -24,10 +37,12 @@ const extractAllFrames = async (req,res) => {
 
 const trim = (req,res) => {
     
+    const {start, duration} = req.body;
+    
     ffmpeg("./videos/"+req.file.originalname)
     .noAudio()
-    .setStartTime('00:02:00')
-    .duration(10)
+    .setStartTime(start)
+    .duration(duration)
     .on("start", function(commandLine) {
         console.log("Spawned FFmpeg with command: " + commandLine);
     })
@@ -36,6 +51,23 @@ const trim = (req,res) => {
     })
     .on('end', function(stdout, stderr) {
         console.log('Transcoding succeeded !');
+        
+        const params = {
+            Bucket: "coub",
+            Key: req.file.originalname,
+            ACL: 'public-read',
+            Body: fs.createReadStream("./converted/"+req.file.originalname)
+        };      
+
+        s3.upload(params , (err,data) => {
+            if(err){
+                console.log(err)
+            }
+            else{
+                console.log(data)
+                res.json({"url" : data.Location})
+            }
+        })
     })
     .saveToFile("./converted/"+req.file.originalname)
 }
