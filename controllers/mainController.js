@@ -65,7 +65,7 @@ const trim = (req,res) => {
     .on('end', function(stdout, stderr) {
         console.log('Transcoding succeeded !');
         
-        if(audio.length!==0){
+        if(audio){
             ffmpeg("./converted/"+video.originalname)
             .inputOption('-stream_loop -1')
             .mergeAdd("./audios/"+ audio.originalname)
@@ -101,7 +101,7 @@ const trim = (req,res) => {
         else{
             const params = {
                 Bucket: "coub",
-                Key: req.file.originalname,
+                Key: video.originalname,
                 ACL: 'public-read',
                 Body: fs.createReadStream("./converted/"+video.originalname)
             };      
