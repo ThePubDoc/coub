@@ -5,7 +5,7 @@
 }
 
 .upload { 
-    width: 41%;
+    width: 50%;
     margin: auto;
     border: 1px solid rgba(0, 0, 0, 0.26);
     border-radius: 5px;
@@ -24,6 +24,10 @@
     grid-row-end: 3;
     font-size: 5rem;
     font-weight: 100;
+}
+
+label {
+    width: 80%;
 }
 
 .time {
