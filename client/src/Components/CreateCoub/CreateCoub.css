@@ -1,0 +1,57 @@
+.upload { 
+    width: 41%;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 20% auto;
+    align-items: flex-end;
+}
+
+.upload-video {
+    margin-top: 4rem;
+}
+
+.upload svg {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    font-size: 5rem;
+    font-weight: 100;
+}
+
+.time {
+    width: 50%;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 60% auto;
+    row-gap: 1rem;
+    align-items: center;
+}
+
+.time p {
+    font-family: bold;
+    font-size: large;
+}
+
+.time input {
+    height: 1.5rem;
+    padding: .5rem;
+    border-radius: 6px;
+    background-color: #eaeaea;
+    border: 2px solid #eaeaea;
+}
+
+.time input:hover {
+    border: 2px solid blue;
+}
+
+.video-player {
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.audio-player {
+    width: 41%;
+    margin: 1rem auto;
+}

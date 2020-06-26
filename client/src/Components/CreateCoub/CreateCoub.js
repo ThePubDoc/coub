@@ -1,19 +1,27 @@
 import React, { useState, useRef, Fragment } from 'react'
 import ReactPlayer from 'react-player';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 import axios from 'axios';
 
 import Navbar from '../Navbar/Navbar'
 import Logo from '../../Images/coub-logo.png';
 
+import './CreateCoub.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
 const CreateCoub = () => {
 
     const [ video, setVideo ] = useState({});
-    const [ videoURL, setVideoURL] = useState('');
+    const [ videoURL, setVideoURL ] = useState('');
     const [ videoStart, setVideoStart ] = useState('');
     const [ videoDuration, setVideoDuration ] = useState('');
     
     const [ audio, setAudio ] = useState({});
+    const [ audioURL, setAudioURL ] = useState('');
     const [ audioStart, setAudioStart ] = useState('');
     const [ audioDuration, setAudioDuration ] = useState('');
 
@@ -42,45 +50,111 @@ const CreateCoub = () => {
             <Navbar Logo = { Logo }/>
         
             <form onSubmit = { (e) => extractAllFrames(e) }>
+
+                { !videoURL &&
+                    
+                    <label htmlFor = "upload-video-input">
+                        <div className = "upload upload-video">
+                            <FontAwesomeIcon icon = { faArrowUp }/>
+                            <h1>Upload a video</h1>
+                            <p>Upload and trim your video. Max: 400 MB and 20 min. Coub supports most video formats.</p>
+                        </div>
+                    </label>
+                
+                }
+                
                 <input 
+                    id = "upload-video-input"
                     type = "file" 
+                    style = {{display : "none"}}
                     onChange = { (e) => { 
                         setVideo(e.target.files[0]); 
                         setVideoURL(URL.createObjectURL(e.target.files[0]))
                     }
                 }/>
                 
-                { videoURL.length!==0 &&
-                    <Fragment>
+                { videoURL &&
+                    <>
                         
-                        <ReactPlayer url = { videoURL } playing = { true } controls = { true }/>
-                        <input 
-                            type = "number" 
-                            placeholder = "Start Time in seconds" 
-                            onChange = {(e) => setVideoStart(e.target.value)}
+                        <ReactPlayer className = "video-player"
+                            url = { videoURL } 
+                            playing = { true } 
+                            controls = { true }
+                            
                         />
-                        <input 
-                            type = "number" 
-                            placeholder = "Duration in seconds" 
-                            onChange = {(e) => setVideoDuration(e.target.value)}
-                        />
+
+                        <div className = "time">
+                            <label>
+                                <p>Video Start Time (in seconds)</p>
+                            </label>
+                            <input 
+                                type = "number" 
+                                placeholder = "Start Time in seconds" 
+                                onChange = {(e) => setVideoStart(e.target.value)}
+                            />
+
+                            <label>
+                                <p>Video Duration (in seconds)</p>
+                            </label>
+                            <input 
+                                type = "number" 
+                                placeholder = "Duration in seconds" 
+                                onChange = {(e) => setVideoDuration(e.target.value)}
+                            />
+
+                        </div>
+
+                        { !audioURL &&
+                            <label htmlFor = "upload-audio-input">
+                                <div className = "upload upload-audio">
+                                    <FontAwesomeIcon icon = { faArrowUp }/>
+                                    <h1>Upload a audio</h1>
+                                    <p>Add muisc or audio to your coub.</p>
+                                </div>
+                            </label>
+                        }
+                        
+                        { audioURL &&
+                            <>
+                                <AudioPlayer className = "audio-player"
+                                    src = { audioURL }
+                                />
+
+                                <div className = "time">
+                                    <label>
+                                        <p>Audio Start Time (in seconds)</p>
+                                    </label>
+                                    <input 
+                                        type = "number" 
+                                        placeholder = "Start Time in seconds" 
+                                        onChange = {(e) => setAudioStart(e.target.value)}
+                                    />
+
+                                    <label>
+                                        <p>Video Duration (in seconds)</p>
+                                    </label>
+                                    <input 
+                                        type = "number" 
+                                        placeholder = "Duration in seconds" 
+                                        onChange = {(e) => setAudioDuration(e.target.value)}
+                                    />
+                                </div>
+                            </>
+                        }
+                        
                         <input
                             type = "file"
-                            onChange = { (e) => setAudio(e.target.files[0])}
+                            id = "upload-audio-input"
+                            onChange = { (e) => {
+                                setAudio(e.target.files[0])
+                                setAudioURL(URL.createObjectURL(e.target.files[0]))
+                            }}
+                            style = {{display : "none"}}
                         />
-                        <input 
-                            type = "number" 
-                            placeholder = "Start Time in seconds" 
-                            onChange = {(e) => setAudioStart(e.target.value)}
-                        />
-                        <input 
-                            type = "number" 
-                            placeholder = "Duration in seconds" 
-                            onChange = {(e) => setAudioDuration(e.target.value)}
-                        />
-                        <button>Go</button>
+                        
+                        <button>Create</button>
 
-                    </Fragment>    
+                    </>    
                 }
                 
             </form>
