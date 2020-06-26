@@ -49,7 +49,10 @@ const CreateCoub = () => {
         <div>
             <Navbar Logo = { Logo }/>
         
-            <form onSubmit = { (e) => extractAllFrames(e) }>
+            <form
+                className = "form" 
+                onSubmit = { (e) => extractAllFrames(e) }
+            >
 
                 { !videoURL &&
                     

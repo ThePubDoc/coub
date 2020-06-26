@@ -1,3 +1,9 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .upload { 
     width: 41%;
     margin: auto;
