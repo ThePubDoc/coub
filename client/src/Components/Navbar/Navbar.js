@@ -21,7 +21,6 @@ const Navbar = ({ Logo}) => {
                 <Link to = "/">
                     <img src = { Logo }/>
                 </Link>
-                {/* <img src = { Logo }/> */}
                 
                 <div className = "search-coub">
                     <FontAwesomeIcon className = "search" icon = { faSearch }/>

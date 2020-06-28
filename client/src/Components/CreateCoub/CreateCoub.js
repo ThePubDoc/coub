@@ -1,12 +1,11 @@
-import React, { useState, useRef, Fragment } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import ReactPlayer from 'react-player';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 import axios from 'axios';
 
-import Navbar from '../Navbar/Navbar'
-import Logo from '../../Images/coub-logo.png';
+import SideNavContext from '../../Context/SideNavContext';
 
 import './CreateCoub.css';
 
@@ -14,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const CreateCoub = () => {
+
+    const { sideNav, setSideNav } = useContext(SideNavContext);
 
     const [ video, setVideo ] = useState({});
     const [ videoURL, setVideoURL ] = useState('');
@@ -24,6 +25,10 @@ const CreateCoub = () => {
     const [ audioURL, setAudioURL ] = useState('');
     const [ audioStart, setAudioStart ] = useState('');
     const [ audioDuration, setAudioDuration ] = useState('');
+
+    useEffect(() => {
+        setSideNav(false)
+    })
 
     const extractAllFrames = async (e) => {
         e.preventDefault();
@@ -47,7 +52,6 @@ const CreateCoub = () => {
 
     return (
         <div>
-            <Navbar Logo = { Logo }/>
         
             <form
                 className = "form" 
