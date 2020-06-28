@@ -56,6 +56,10 @@
     margin: 0 .5rem;
 }
 
+.navbar .navbar-elements-container .user-icons {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+}
 .plus {
     border: 1px solid black;
     padding: .5rem;
@@ -102,5 +106,37 @@
 }
 
 .sub-menu ul li:hover {
+    background-color: #eaeaea;
+}
+
+.user-sub-menu {
+    position: absolute;
+    top: 3rem;
+    left: 91vw;
+    display: none;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5px;
+}
+
+.user-sub-menu:hover {
+    display: block;
+}
+
+.user-sub-menu  ul li {
+    width: 100%;
+}
+
+.navbar .navbar-elements-container .user-sub-menu ul li p {
+    cursor: pointer;
+    margin: 1rem;
+    padding: .5rem 0;
+}
+
+.user:hover .user-sub-menu {
+    display: block;
+    
+}
+
+.user-sub-menu ul li:hover {
     background-color: #eaeaea;
 }

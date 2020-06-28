@@ -33,7 +33,8 @@ const Login = ({overlay, setOverlay}) => {
         })
         
         localStorage.setItem("auth-token", loginRes.data.token);
-        history.push("/");
+        closeOverlay();
+        // history.push("/");
     }
 
     const closeOverlay = () => {
