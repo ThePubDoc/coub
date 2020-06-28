@@ -5,6 +5,8 @@ const multer = require('multer');
 const mainController = require('../controllers/mainController');
 const signupController = require('../controllers/signupController');
 
+const auth = require('../controllers/middlewares/auth');
+
 let videos = multer.diskStorage({
   destination: function(req, file, cb) {
     if(file.mimetype.split("/")[0] === "audio"){
