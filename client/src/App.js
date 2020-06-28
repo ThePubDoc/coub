@@ -8,6 +8,7 @@ import SideNav from './Components/SideNav/SideNav';
 import Home from './Components/Home/Home';
 import CreateCoub from './Components/CreateCoub/CreateCoub';
 
+import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
 
 import './Styles/reset.css';
@@ -15,28 +16,35 @@ import './Styles/root.css';
 import './App.css';
 
 function App() {
+
   const [ overlay, setOverlay ] = useState("none");
   const [ sideNav, setSideNav ] = useState(true)
+  const [ user, setUser ] = useState({
+    token : undefined,
+    user : undefined,
+  })
 
   return (
     <>
-      <SideNavContex.Provider value = {{ sideNav, setSideNav }}>
-        <BrowserRouter>
-          
-          <Navbar Logo = { Logo }></Navbar>
-          { sideNav &&
-            <SideNav/>
-          }
+      <UserContext.Provider value = {{ user, setUser }}>
+        <SideNavContex.Provider value = {{ sideNav, setSideNav }}>
+          <BrowserRouter>
+            
+            <Navbar Logo = { Logo }></Navbar>
+            { sideNav &&
+              <SideNav/>
+            }
 
-          <Switch>
+            <Switch>
 
-            <Route path = "/" exact component = { Home }></Route>
-            <Route path = "/create" component = { CreateCoub }></Route>
+              <Route path = "/" exact component = { Home }></Route>
+              <Route path = "/create" component = { CreateCoub }></Route>
 
-          </Switch>
+            </Switch>
 
-        </BrowserRouter>
-      </SideNavContex.Provider>
+          </BrowserRouter>
+        </SideNavContex.Provider>
+      </UserContext.Provider>
     </>
   )
 }

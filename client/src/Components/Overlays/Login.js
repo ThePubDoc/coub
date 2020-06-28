@@ -1,18 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 import './Overlays.css';
 import { faCross } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import UserContext from '../../Context/UserContext';
+
 const Login = ({overlay, setOverlay}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
 
+    const { user, setUser } = useContext(UserContext);
+
     const login = async (e) => {
         e.preventDefault();
-        const request = await axios.post("/api/login" , { email, password});
+        
+        const loginRes = await axios.post(
+            "/api/login" , { 
+                email, password
+        });
+        const token = loginRes.data.token;
+        
+        setUser({
+            token : loginRes.data.token,
+            user : loginRes.data.user,
+        })
     }
 
     const closeOverlay = () => {
