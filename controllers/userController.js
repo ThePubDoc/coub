@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const signup = async (req,res) => {
     try {
@@ -36,6 +37,42 @@ const signup = async (req,res) => {
     }
 }
 
+
+const login = async (req,res) => {
+    try{    
+        const { email, password } = req.body;
+        
+        if( !email || !password){
+            res.status(400).json({msg : "Enter all details"})
+        }
+        
+        const user = await User.findOne({email : email});
+        if(!user){
+            res.status(400).json({msg : "No account found"})
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            res.status(400).json({msg: "Invalid cridentials"})
+        }
+
+        const token = jwt.sign({id : user._id}, process.env.JWT_SECRET)
+        res.json({
+            token,
+            user : {
+                id : user._id,
+                email : user.email,
+                name : user.name
+            }
+        })
+    }
+    catch (err){
+        res.status(500).json({error : err.message});
+    }
+}
+
+
 module.exports = {
     signup,
+    login,
 }

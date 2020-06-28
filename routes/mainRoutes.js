@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 
 const mainController = require('../controllers/mainController');
-const signupController = require('../controllers/signupController');
+const userController = require('../controllers/userController');
 
 const auth = require('../controllers/middlewares/auth');
 
@@ -23,7 +23,11 @@ let videos = multer.diskStorage({
 
 let uploadVideos = multer({ storage : videos });
 
-router.route('/signup').post(signupController.signup);
+//user 
+router.route('/signup').post(userController.signup);
+router.route('/login').post(userController.login);
+
+
 
 router.route('/trim').post(uploadVideos.any(),mainController.trim);
 
