@@ -28,7 +28,7 @@ const CreateCoub = () => {
 
     useEffect(() => {
         setSideNav(false)
-    })
+    },[])
 
     const extractAllFrames = async (e) => {
         e.preventDefault();

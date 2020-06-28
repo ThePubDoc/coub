@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faFire, faRandom, faBars, faCircle, faGem, 
     faUserFriends, faUser, faHeart, faBookmark } 
     from '@fortawesome/free-solid-svg-icons';
+
+import SideNavContext from '../../Context/SideNavContext';
 
 import './SideNav.css';
 
@@ -11,6 +13,8 @@ const SideNav = () => {
 
     const [showMore, setShowMore]  = useState(true);
     const [showLess, setShowLess] = useState(false);
+
+    const { sideNav, setSideNav } = useContext(SideNavContext);
 
     const toggle = () => {
         setShowMore(!showMore);

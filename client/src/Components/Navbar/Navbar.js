@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,17 +9,21 @@ import Button from '../Button/Button';
 import Signup from '../Overlays/Signup';
 import Login from '../Overlays/Login';
 
+import SideNavContext from '../../Context/SideNavContext';
+
 import './Navbar.css'
 
 const Navbar = ({ Logo}) => {
 
     const [overlay, setOverlay] = useState("none");
 
+    const { sideNav, setSideNav } = useContext(SideNavContext);
+
     return (
         <div className = "navbar">
             <div className = "navbar-elements-container">
                 <Link to = "/">
-                    <img src = { Logo }/>
+                    <img src = { Logo } />
                 </Link>
                 
                 <div className = "search-coub">

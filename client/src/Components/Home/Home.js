@@ -8,7 +8,7 @@ const Home = () => {
 
     useEffect(() => {
         setSideNav(true)
-    })
+    },[])
     
     return (
         <div>
