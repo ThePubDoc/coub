@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory }  from 'react-router-dom';
+
 import axios from 'axios';
 
 import './Overlays.css';
@@ -8,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../Context/UserContext';
 
 const Login = ({overlay, setOverlay}) => {
+
+    const history = useHistory();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
@@ -27,6 +31,9 @@ const Login = ({overlay, setOverlay}) => {
             token : loginRes.data.token,
             user : loginRes.data.user,
         })
+        
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/");
     }
 
     const closeOverlay = () => {

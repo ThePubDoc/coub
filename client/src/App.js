@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, BrowserRouter, Switch } from 'react-router-dom';
 
+import axios from 'axios';
+
 import Logo from './Images/coub-logo.png';
 
 import Navbar from './Components/Navbar/Navbar';
@@ -23,6 +25,21 @@ function App() {
     token : undefined,
     user : undefined,
   })
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      let token = localStorage.getItem("auth-token");
+      
+      if(token === null){
+        localStorage.setItem("auth-token","");
+        token = "";
+      }
+
+      
+    }
+
+    checkLogin();
+  },[]);
 
   return (
     <>

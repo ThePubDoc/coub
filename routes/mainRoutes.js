@@ -26,7 +26,7 @@ let uploadVideos = multer({ storage : videos });
 //user 
 router.route('/signup').post(userController.signup);
 router.route('/login').post(userController.login);
-
+router.route('/isTokenValid').post(userController.isTokenValid);
 
 
 router.route('/trim').post(uploadVideos.any(),mainController.trim);
