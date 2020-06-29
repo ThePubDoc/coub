@@ -22,7 +22,7 @@ const UserDropdown = () => {
         <div className = "user-sub-menu">
             <ul>
                 <li>
-                    <Link to = "/create" className = "user-name">
+                    <Link to = { `/${ user.user.username }`} className = "user-name">
                         <img src = { user.user.dp }/>
                         <p>{ user.user.name }</p>
                     </Link>

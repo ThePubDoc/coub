@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import SideNav from './Components/SideNav/SideNav';
 import Home from './Components/Home/Home';
 import CreateCoub from './Components/CreateCoub/CreateCoub';
+import User from './Components/User/User';
 
 import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
@@ -56,7 +57,7 @@ function App() {
 
               <Route path = "/" exact component = { Home }></Route>
               <Route path = "/create" component = { CreateCoub }></Route>
-
+              <Route path = "/:username" component = { User }></Route>
             </Switch>
 
           </BrowserRouter>
