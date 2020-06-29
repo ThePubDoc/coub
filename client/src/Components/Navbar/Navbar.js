@@ -70,7 +70,7 @@ const Navbar = ({ Logo}) => {
                             <FontAwesomeIcon icon = { faUsers } className = "user-icons"/>
                             <FontAwesomeIcon icon = { faBell } className = "user-icons"/>
                             <div className = "user">
-                                <FontAwesomeIcon icon = { faUser } className = "user-icons"/>
+                                <img src = { user.user.dp } className = "user-icons dp"/>
                                 <UserDropdown/>
                             </div>
                             
