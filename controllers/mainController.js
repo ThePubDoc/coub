@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({path : path.resolve(__dirname, '../.env')});
 
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
@@ -81,7 +82,7 @@ const trim = (req,res) => {
                 console.log('Transcoding succeeded !');
                 const params = {
                     Bucket: "coub",
-                    Key: audio.originalname.split(".")[0]+video.originalname,
+                    Key: "coubs/"+audio.originalname.split(".")[0]+video.originalname,
                     ACL: 'public-read',
                     Body: fs.createReadStream("./converted/"+audio.originalname.split(".")[0]+video.originalname)
                 };      
@@ -122,7 +123,7 @@ const trim = (req,res) => {
         else{
             const params = {
                 Bucket: "coub",
-                Key: video.originalname,
+                Key: "coubs/"+video.originalname,
                 ACL: 'public-read',
                 Body: fs.createReadStream("./converted/"+video.originalname)
             };      

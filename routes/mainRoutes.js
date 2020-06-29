@@ -23,8 +23,11 @@ let videos = multer.diskStorage({
 
 let uploadVideos = multer({ storage : videos });
 
+let dp = multer.memoryStorage();
+let uploadDP = multer({ storage : dp });
+
 //user 
-router.route('/signup').post(userController.signup);
+router.route('/signup').post(uploadDP.single("dp"), userController.signup);
 router.route('/login').post(userController.login);
 router.route('/isTokenValid').post(userController.isTokenValid);
 

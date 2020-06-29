@@ -1,10 +1,39 @@
 const User = require('../models/user');
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const aws = require('aws-sdk');
+const fs = require('fs');
+
+aws.config.update({
+    secretAccessKey: process.env.AWS_Secret_Access_Key,
+    accessKeyId: process.env.AWS_Access_Key_ID,
+    region: process.env.region,
+});
+
+const s3 = new aws.S3();
 
 const signup = async (req,res) => {
     try {
         const { name, username, password, email } = req.body;
+        
+        let dp;
+        let key;
+        if(req.file){
+            dp = req.file.buffer;
+            key = req.file.originalname;
+        }
+        else {
+            dp = fs.createReadStream("./defaultDP.png");
+            key = "default.png";
+        }
+
+        const params = {
+            Bucket: "coub",
+            Key: "dp/"+email+key,
+            ACL: 'public-read',
+            Body: dp
+        };
     
         if( !name || !username || !password || !email){
             res.status(400).json({msg : "Enter all details"});
@@ -22,15 +51,23 @@ const signup = async (req,res) => {
         const salt = await bcrypt.genSalt();
         const passswordHash = await bcrypt.hash(password, salt);
     
-        const newUser = new User({
-            name,
-            username,
-            email,
-            password : passswordHash,
+        s3.upload(params , async (err,data) => {
+            if(err){
+                console.log(err)
+            }
+            else{
+                const newUser = new User({
+                    name,
+                    username,
+                    email,
+                    password : passswordHash,
+                    dp : data.Location
+                })
+                const savedUser = await newUser.save();
+                
+                res.json(savedUser);
+            }
         })
-        const savedUser = await newUser.save();
-        
-        res.json(savedUser);
     }
     catch (err) {
         res.status(500).json({error : err.message});
