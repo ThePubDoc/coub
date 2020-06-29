@@ -1,0 +1,1 @@
+- Trimmed coubs are saved in this folder and deleted after uploading the final coub.

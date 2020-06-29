@@ -1,0 +1,1 @@
+- Uploaded Videos are saved in this folder and deleted after uploading a coub.
