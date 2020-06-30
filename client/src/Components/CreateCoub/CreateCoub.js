@@ -5,16 +5,24 @@ import 'react-h5-audio-player/lib/styles.css';
 
 import axios from 'axios';
 
+//context importss
 import SideNavContext from '../../Context/SideNavContext';
+import UserContext from '../../Context/UserContext';
+import OverlayContext from '../../Context/OverlayContext';
 
+//css imports
 import './CreateCoub.css';
 
+//icons imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
 
 const CreateCoub = () => {
 
     const { sideNav, setSideNav } = useContext(SideNavContext);
+    const { user, setUser } = useContext(UserContext);
+    const { overlay, setOverlay } = useContext(OverlayContext);
 
     const [ video, setVideo ] = useState({});
     const [ videoURL, setVideoURL ] = useState('');
@@ -50,6 +58,20 @@ const CreateCoub = () => {
         setVideoURL(request.data.url)
     }
 
+    const uploadVideo = (e) => {
+        e.preventDefault();
+        if(user.user){
+            setVideo(e.target.files[0]); 
+            setVideoURL(URL.createObjectURL(e.target.files[0]))
+        }
+        else {
+            setOverlay("login");
+        }
+    }
+
+    const checkLogin = (e) => {
+
+    }
     return (
         <div>
         
@@ -74,11 +96,9 @@ const CreateCoub = () => {
                     id = "upload-video-input"
                     type = "file" 
                     style = {{display : "none"}}
-                    onChange = { (e) => { 
-                        setVideo(e.target.files[0]); 
-                        setVideoURL(URL.createObjectURL(e.target.files[0]))
-                    }
-                }/>
+                    onClick = { (e) => checkLogin(e) }
+                    onChange = { (e) => uploadVideo(e) }
+                />
                 
                 { videoURL &&
                     <>

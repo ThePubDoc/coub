@@ -12,15 +12,15 @@ import UserDropdown from './UserDropdown';
 
 import SideNavContext from '../../Context/SideNavContext';
 import UserContext from '../../Context/UserContext';
+import OverlayContext from '../../Context/OverlayContext';
 
 import './Navbar.css'
 
 const Navbar = ({ Logo}) => {
 
-    const [overlay, setOverlay] = useState("none");
-
     const { sideNav, setSideNav } = useContext(SideNavContext);
     const { user, setUser } = useContext(UserContext);
+    const { overlay, setOverlay } = useContext(OverlayContext);
 
     return (
         <div className = "navbar">

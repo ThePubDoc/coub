@@ -136,9 +136,20 @@ const isTokenValid = async (req,res) => {
     }
 }
 
+const user = async (req, res) => {
+    const loggedUser = await User.findById(req.user);
+    res.json({
+        id : loggedUser._id,
+        username : loggedUser.username,
+        name : loggedUser.name,
+        email : loggedUser.email,
+        dp : loggedUser.dp
+    }) 
+}
 
 module.exports = {
     signup,
     login,
     isTokenValid,
+    user
 }

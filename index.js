@@ -4,13 +4,14 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const compression = require('compression');
+const cors = require('cors');
 
 const mainRoutes = require('./routes/mainRoutes');
 const models = require("./models/index");
 
 models.init();
 
+// app.use(cors());
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
 app.use(cookieParser());

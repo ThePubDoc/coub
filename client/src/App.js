@@ -13,6 +13,7 @@ import User from './Components/User/User';
 
 import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
+import OverlayContext from './Context/OverlayContext';
 
 import './Styles/reset.css';
 import './Styles/root.css';
@@ -35,33 +36,49 @@ function App() {
         localStorage.setItem("auth-token","");
         token = "";
       }
-
+      console.log(token)
+      const tokenRes = await axios.post("/api/isTokenValid",null, {
+        headers : { "x-auth-token" : token }
+      })
       
-    }
+      if(tokenRes.data){
+        const userRes = await axios.get("/api/user", {
+          headers : {"x-auth-token" : token}
+        })
 
+        setUser({
+          token,
+          user : userRes.data,
+        })
+      }
+      console.log("yahan bhi aya")
+    }
     checkLogin();
+    console.log("andar to aya")
   },[]);
 
   return (
     <>
       <UserContext.Provider value = {{ user, setUser }}>
-        <SideNavContex.Provider value = {{ sideNav, setSideNav }}>
-          <BrowserRouter>
-            
-            <Navbar Logo = { Logo }></Navbar>
-            { sideNav &&
-              <SideNav/>
-            }
+        <OverlayContext.Provider value = {{ overlay, setOverlay }}>
+          <SideNavContex.Provider value = {{ sideNav, setSideNav }}>
+            <BrowserRouter>
+              
+              <Navbar Logo = { Logo }></Navbar>
+              { sideNav &&
+                <SideNav/>
+              }
 
-            <Switch>
+              <Switch>
 
-              <Route path = "/" exact component = { Home }></Route>
-              <Route path = "/create" component = { CreateCoub }></Route>
-              <Route path = "/:username" component = { User }></Route>
-            </Switch>
+                <Route path = "/" exact component = { Home }></Route>
+                <Route path = "/create" component = { CreateCoub }></Route>
+                <Route path = "/:username" component = { User }></Route>
+              </Switch>
 
-          </BrowserRouter>
-        </SideNavContex.Provider>
+            </BrowserRouter>
+          </SideNavContex.Provider>
+        </OverlayContext.Provider>
       </UserContext.Provider>
     </>
   )
