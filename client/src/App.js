@@ -57,7 +57,7 @@ function App() {
       }
     }
     checkLogin();
-  });
+  },[]);
 
 
   //main container width according to side nav visibilty
@@ -70,7 +70,7 @@ function App() {
     }
   });
 
-  
+
   return (
     <>
       <UserContext.Provider value = {{ user, setUser }}>

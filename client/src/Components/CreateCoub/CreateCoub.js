@@ -69,9 +69,7 @@ const CreateCoub = () => {
         }
     }
 
-    const checkLogin = (e) => {
-
-    }
+    
     return (
         <div>
         
@@ -96,7 +94,6 @@ const CreateCoub = () => {
                     id = "upload-video-input"
                     type = "file" 
                     style = {{display : "none"}}
-                    onClick = { (e) => checkLogin(e) }
                     onChange = { (e) => uploadVideo(e) }
                 />
                 
