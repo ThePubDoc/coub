@@ -14,6 +14,7 @@ import User from './Components/User/User';
 import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
 import OverlayContext from './Context/OverlayContext';
+import MainContainerContext from'./Context/MainContainerContext';
 
 import './Styles/reset.css';
 import './Styles/root.css';
@@ -22,13 +23,16 @@ import './App.css';
 function App() {
 
   const [ overlay, setOverlay ] = useState("none");
-  const [ sideNav, setSideNav ] = useState(true)
+  const [ sideNav, setSideNav ] = useState(true);
   const [ user, setUser ] = useState({
     token : undefined,
     user : undefined,
-  })
+  });
+  const [ mainContainerClass, setMainContainerClass ] = useState("main-container margin-left-16vw");
 
+  //check for logged in user
   useEffect(() => {
+    console.log("login check")
     const checkLogin = async () => {
       let token = localStorage.getItem("auth-token");
       
@@ -36,7 +40,7 @@ function App() {
         localStorage.setItem("auth-token","");
         token = "";
       }
-      console.log(token)
+      
       const tokenRes = await axios.post("/api/isTokenValid",null, {
         headers : { "x-auth-token" : token }
       })
@@ -51,12 +55,22 @@ function App() {
           user : userRes.data,
         })
       }
-      console.log("yahan bhi aya")
     }
     checkLogin();
-    console.log("andar to aya")
-  },[]);
+  });
 
+
+  //main container width according to side nav visibilty
+  useEffect(() => {
+    if(sideNav){
+      setMainContainerClass("main-container margin-left-16vw");
+    }
+    else {
+      setMainContainerClass("main-container");
+    }
+  });
+
+  
   return (
     <>
       <UserContext.Provider value = {{ user, setUser }}>
@@ -69,12 +83,15 @@ function App() {
                 <SideNav/>
               }
 
-              <Switch>
-
-                <Route path = "/" exact component = { Home }></Route>
-                <Route path = "/create" component = { CreateCoub }></Route>
-                <Route path = "/:username" component = { User }></Route>
-              </Switch>
+              <MainContainerContext.Provider value = {{ mainContainerClass, setMainContainerClass }}>
+                <div className = { mainContainerClass }>
+                  <Switch>
+                    <Route path = "/" exact component = { Home }></Route>
+                    <Route path = "/create" component = { CreateCoub }></Route>
+                    <Route path = "/:username" component = { User }></Route>
+                  </Switch>
+                </div>
+              </MainContainerContext.Provider>
 
             </BrowserRouter>
           </SideNavContex.Provider>

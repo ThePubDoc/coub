@@ -1,7 +1,8 @@
 .sidenav {
+    position: fixed;
     display: flex;
     flex-direction: column;
-    width: 13%;
+    width: 16vw;
     height: 96vh;
     background-color: #f7f7f7;
     text-align: center;
