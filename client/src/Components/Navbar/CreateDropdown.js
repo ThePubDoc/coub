@@ -9,7 +9,7 @@ const Dropdown = () => {
                     <Link to = "/create"><p>Create Coub</p></Link>
                 </li>
                 <li>
-                    <p>Create Story</p>
+                    <Link to = "/createStory"><p>Create</p></Link>
                 </li>
             </ul>
         </div>

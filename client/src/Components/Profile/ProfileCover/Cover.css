@@ -11,7 +11,8 @@
     padding: 2rem 0;
 }
 
-.cover-hero .user-info-hero .edit-cover {
+.cover-hero .user-info-hero .edit-cover-hero {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -19,6 +20,51 @@
     height: 10%;
 }
 
+.cover-hero .user-info-hero .edit-cover-hero .edit-cover {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: white;
+}
+
+.cover-hero .user-info-hero .edit-cover-hero .edit-cover p {
+    margin: 0 .5rem;
+    font-weight: 800;
+}
+
+.cover-hero .user-info-hero .edit-cover-hero .edit-cover:hover {
+    background-color: blue;
+    color: white;
+    border: 2px solid blue;
+}
+
+.cover-hero .user-info-hero .edit-cover-hero .upload-cover-section {
+    position: absolute;
+    background-color: white;
+    top: 2.6rem;
+    right: -.6rem;
+    border-radius: 7px;
+    display: none;
+}
+
+.edit-cover:hover + .upload-cover-section{
+    display: block;
+}
+
+.cover-hero .user-info-hero .edit-cover-hero .upload-cover-section .upload-cover-section-element {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: .5rem 1rem;
+}
+
+.cover-hero .user-info-hero .edit-cover-hero .upload-cover-section .upload-cover-section-element p {
+    font-size: 1.2rem;
+    margin: 0 .5rem;
+}
 .cover-hero .user-info-hero .dp-section {
     display: flex;
     justify-content: flex-start;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faComment, faSortDown, faImage, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import UserContext from '../../../Context/UserContext';
 
@@ -14,11 +14,23 @@ const MyProfile = () => {
     return (
         <div className = "cover-hero">
             <div className = "user-info-hero">
-                <div className = "edit-cover">
-                    <select>
-                        <option>Use Coub</option>
-                        <option>Upload Picture</option>
-                    </select>
+                <div className = "edit-cover-hero">
+                    <div className = "edit-cover">
+                        <p>Edit Cover</p>
+                        <FontAwesomeIcon icon = { faSortDown } />
+                    </div>
+                    <div className = "upload-cover-section">
+
+                        <div className = "upload-cover-section-element">
+                            <FontAwesomeIcon icon = { faPlus } />
+                            <p>Use Coub</p>
+                        </div>
+                        <div className = "upload-cover-section-element">
+                            <FontAwesomeIcon icon = { faImage } />
+                            <p>Use Coub</p>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className = "dp-section">
