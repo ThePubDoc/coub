@@ -1,10 +1,10 @@
 const path = require('path');
 require('dotenv').config({path : path.resolve(__dirname, '../.env')});
-
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
-
 const aws = require('aws-sdk');
+
+const User = require('../models/user');
 
 aws.config.update({
     secretAccessKey: process.env.AWS_Secret_Access_Key,
@@ -154,7 +154,24 @@ const trim = (req,res) => {
 
 }
 
+const getOtherUserInfo = async (req,res) => {
+    const user = await User.findOne({username : req.body.username});
+    console.log(user)
+    if(!user) {
+        return res.status(404).json({msg : "No user found"});
+    }
+    res.json({
+        otherUserInfo : {
+            name : user.name,
+            username : user.username,
+            email : user.email,
+            dp : user.dp,
+        }
+    })
+}
+
 module.exports = {
     index,
     trim,
+    getOtherUserInfo
 }

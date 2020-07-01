@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import axios from 'axios';
 import MyProfile from './ProfileCover/MyProfile';
 import UserProfile from './ProfileCover/UserProfile';
 

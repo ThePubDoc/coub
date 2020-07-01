@@ -21,7 +21,7 @@ import './Styles/root.css';
 import './App.css';
 
 function App() {
-
+  
   const [ overlay, setOverlay ] = useState("none");
   const [ sideNav, setSideNav ] = useState(true);
   const [ user, setUser ] = useState({
@@ -69,7 +69,6 @@ function App() {
       setMainContainerClass("main-container");
     }
   });
-
 
   return (
     <>

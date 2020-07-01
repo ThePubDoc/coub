@@ -30,8 +30,12 @@ let uploadDP = multer({ storage : dp });
 router.route('/signup').post(uploadDP.single("dp"), userController.signup);
 router.route('/login').post(userController.login);
 router.route('/isTokenValid').post(userController.isTokenValid);
-router.route('/user').get(auth, userController.user);
 
 router.route('/trim').post(uploadVideos.any(),mainController.trim);
+
+router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
+
+router.route('/user').get(auth, userController.user);
+
 
 module.exports = router;
