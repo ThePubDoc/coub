@@ -10,6 +10,30 @@ import './Cover.css';
 
 const UserProfile = () => {
 
+    const { username } = useParams();
+    
+    const [ otherUser, setOtherUser ] = useState({
+        userData : {
+            name : "",
+            username : "",
+            dp : "",
+            email : "",
+        }
+    });
+
+    useEffect(() => {
+
+        const getUserInfo = async () => {
+            const userRes = await axios.post('/api/getOtherUserInfo', { username });
+            setOtherUser({
+                userData : userRes.data.otherUserInfo
+            })
+            console.log(otherUser)
+        }
+
+        getUserInfo();
+    },[])
+    
     return (
         <div className = "cover-hero">
             <div className = "user-info-hero">
@@ -18,8 +42,8 @@ const UserProfile = () => {
                 </div>
 
                 <div className = "dp-section">
-                    <img src = "" alt = ""/>
-                    <h1></h1>
+                    <img src = { otherUser.userData.dp } alt = ""/>
+                    <h1>{ otherUser.userData.username }</h1>
                 </div>
 
                 <div className = "info-container">
