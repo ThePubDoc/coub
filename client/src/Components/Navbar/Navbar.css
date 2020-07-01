@@ -123,7 +123,7 @@
 
 .user-sub-menu {
     position: absolute;
-    top: 2.8rem;
+    top: 2.5rem;
     right: 1rem;
     z-index: 1;
     display: none;
@@ -138,13 +138,16 @@
 }
 
 .user-sub-menu .logout {
-    margin: 0 .6rem;
+    padding: .5rem 0;
+    margin: 0 .5rem;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .user-sub-menu .logout svg {
     margin: 0 1rem;
+    font-size: 1.5rem;
 }
 
 .user-sub-menu ul li {
@@ -171,6 +174,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0.5rem 0;
 }
 
 .user-sub-menu .user-name img {
