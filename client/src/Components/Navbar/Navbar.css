@@ -46,7 +46,7 @@
 
 .navbar .navbar-elements-container .search-coub input:focus {
     background-color: white;
-    border: 2px solid blue !important;
+    border: 2px solid blue;
 }
 
 .navbar .navbar-elements-container .search-coub input{
@@ -77,6 +77,7 @@
     top: 3.8rem;
     left: 30rem;
     display: none;
+    background-color: white;
 }
 
 .dropdown {
@@ -123,6 +124,7 @@
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
     border-radius: 5px;
     width: 15rem;
+    background-color: white;
 }
 
 .user-sub-menu:hover {

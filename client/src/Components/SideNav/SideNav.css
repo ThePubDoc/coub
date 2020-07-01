@@ -37,6 +37,16 @@
     font-size: 1rem;
     color: #aaaaaa;
     font-weight: 600;
+    text-align: left;
+}
+
+.sidenav .sidenav-items img {
+    border-radius: 5px;
+    width: 15%;
+}
+
+.sidenav .communities-items {
+    padding: .5rem;
 }
 .line {
     content: "";
