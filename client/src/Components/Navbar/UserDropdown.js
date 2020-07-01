@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link} from 'react-router-dom';
 
 import UserContext from '../../Context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ const UserDropdown = () => {
 
         setUser({
             token : undefined,
-            user : undefined
+            userData : undefined
         })
         localStorage.setItem("auth-token", "")
     
@@ -22,9 +22,9 @@ const UserDropdown = () => {
         <div className = "user-sub-menu">
             <ul>
                 <li>
-                    <Link to = { `/${ user.user.username }`} className = "user-name">
-                        <img src = { user.user.dp }/>
-                        <p>{ user.user.name }</p>
+                    <Link to = { `/${ user.userData.username }`} className = "user-name">
+                        <img src = { user.userData.dp } alt = ""/>
+                        <p>{ user.userData.name }</p>
                     </Link>
                 </li>
                 <li>

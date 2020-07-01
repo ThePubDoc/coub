@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useHistory }  from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 
 import axios from 'axios';
 
@@ -9,14 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import UserContext from '../../Context/UserContext';
 
-const Login = ({overlay, setOverlay}) => {
-
-    const history = useHistory();
+const Login = ({ setOverlay}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
 
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     const login = async (e) => {
         e.preventDefault();
@@ -25,16 +22,14 @@ const Login = ({overlay, setOverlay}) => {
             "/api/login" , { 
                 email, password
         });
-        const token = loginRes.data.token;
         
         setUser({
             token : loginRes.data.token,
-            user : loginRes.data.user,
+            userData : loginRes.data.userData,
         })
         
         localStorage.setItem("auth-token", loginRes.data.token);
         closeOverlay();
-        // history.push("/");
     }
 
     const closeOverlay = () => {

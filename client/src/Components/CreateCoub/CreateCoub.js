@@ -20,9 +20,9 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const CreateCoub = () => {
 
-    const { sideNav, setSideNav } = useContext(SideNavContext);
-    const { user, setUser } = useContext(UserContext);
-    const { overlay, setOverlay } = useContext(OverlayContext);
+    const { setSideNav } = useContext(SideNavContext);
+    const { user } = useContext(UserContext);
+    const { setOverlay } = useContext(OverlayContext);
 
     const [ video, setVideo ] = useState({});
     const [ videoURL, setVideoURL ] = useState('');
@@ -60,7 +60,7 @@ const CreateCoub = () => {
 
     const uploadVideo = (e) => {
         e.preventDefault();
-        if(user.user){
+        if(user.userData){
             setVideo(e.target.files[0]); 
             setVideoURL(URL.createObjectURL(e.target.files[0]))
         }

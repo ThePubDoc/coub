@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import SideNavContext from '../../Context/SideNavContext';
 
 const Home = () => {
 
-    const { sideNav, setSideNav } = useContext(SideNavContext);
+    const { setSideNav } = useContext(SideNavContext);
 
     useEffect(() => {
         setSideNav(true)
-    },[])
+    },[ setSideNav ])
     
     return (
         <div>

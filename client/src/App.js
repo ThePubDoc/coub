@@ -9,7 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import SideNav from './Components/SideNav/SideNav';
 import Home from './Components/Home/Home';
 import CreateCoub from './Components/CreateCoub/CreateCoub';
-import User from './Components/User/User';
+import User from './Components/Profile/User';
 
 import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
@@ -26,7 +26,7 @@ function App() {
   const [ sideNav, setSideNav ] = useState(true);
   const [ user, setUser ] = useState({
     token : undefined,
-    user : undefined,
+    userData : undefined,
   });
   const [ mainContainerClass, setMainContainerClass ] = useState("main-container margin-left-16vw");
 
@@ -52,7 +52,7 @@ function App() {
 
         setUser({
           token,
-          user : userRes.data,
+          userData : userRes.data,
         })
       }
     }

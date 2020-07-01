@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
 import './Overlays.css';
 import { faCross } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Signup = ({overlay, setOverlay}) => {
+const Signup = ({ setOverlay}) => {
 
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
@@ -24,9 +24,10 @@ const Signup = ({overlay, setOverlay}) => {
         formData.append("password", password);
         formData.append("dp", dp);
 
-        const request = await axios.post("/api/signup" , formData , {
+        await axios.post("/api/signup" , formData , {
             headers: { 'content-type': 'multipart/form-data' }
         });
+
     }
 
     const closeOverlay = () => {

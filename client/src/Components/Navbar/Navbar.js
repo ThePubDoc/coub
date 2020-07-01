@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faSearch, faBell, faComment, faUsers, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch, faBell, faComment, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import CreateDropdown from './CreateDropdown';
 import Button from '../Button/Button';
@@ -10,23 +10,22 @@ import Signup from '../Overlays/Signup';
 import Login from '../Overlays/Login';
 import UserDropdown from './UserDropdown';
 
-import SideNavContext from '../../Context/SideNavContext';
 import UserContext from '../../Context/UserContext';
 import OverlayContext from '../../Context/OverlayContext';
 
 import './Navbar.css'
 
-const Navbar = ({ Logo}) => {
+const Navbar = ({ Logo }) => {
 
-    const { sideNav, setSideNav } = useContext(SideNavContext);
-    const { user, setUser } = useContext(UserContext);
+    
+    const { user } = useContext(UserContext);
     const { overlay, setOverlay } = useContext(OverlayContext);
 
     return (
         <div className = "navbar">
             <div className = "navbar-elements-container">
                 <Link to = "/">
-                    <img src = { Logo } />
+                    <img src = { Logo } alt = ""/>
                 </Link>
                 
                 <div className = "search-coub">
@@ -46,7 +45,7 @@ const Navbar = ({ Logo}) => {
 
             
             <div className = "navbar-elements-container">
-                { !user.user ? (
+                { !user.userData ? (
                     <>
                         <Button
                             name = {"Login"}
@@ -70,7 +69,7 @@ const Navbar = ({ Logo}) => {
                             <FontAwesomeIcon icon = { faUsers } className = "user-icons"/>
                             <FontAwesomeIcon icon = { faBell } className = "user-icons"/>
                             <div className = "user">
-                                <img src = { user.user.dp } className = "user-icons dp"/>
+                                <img src = { user.userData.dp } className = "user-icons dp" alt = ""/>
                                 <UserDropdown/>
                             </div>
                             
