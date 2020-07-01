@@ -37,7 +37,7 @@ const SideNav = () => {
                 
                 { showMore &&
                     <li className = "sidenav-items" onClick = { toggle }>
-                        <p>Show More...</p> 
+                        <p className = "headings">Show More...</p> 
                     </li>
                 }
                 
@@ -74,7 +74,7 @@ const SideNav = () => {
                         </li>
 
                         <li className = "sidenav-items" onClick = { toggle }>
-                            { showLess && <p>Show Less...</p> }
+                            { showLess && <p className = "headings">Show Less...</p> }
                         </li>
                     </div>
                 }
@@ -92,7 +92,7 @@ const SideNav = () => {
 
                 <div className = "line"/>
                 
-                <h3>Communities</h3>
+                <h3 className = "headings">Communities</h3>
 
                 <li className = "sidenav-items communities-items">
                     <img src = "https://coubsecure-s.akamaihd.net/get/b95/p/category/cw_image/60432c0f1f4/5d35698dc76c52d5f9e63/small_1544749976_animals2.png" alt = ""/>

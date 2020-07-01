@@ -137,6 +137,16 @@
     display: block;
 }
 
+.user-sub-menu .logout {
+    margin: 0 .6rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-sub-menu .logout svg {
+    margin: 0 1rem;
+}
+
 .user-sub-menu ul li {
     margin: 1rem 0;
 }

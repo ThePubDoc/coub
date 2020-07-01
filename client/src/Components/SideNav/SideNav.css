@@ -9,6 +9,7 @@
     overflow: scroll;
 }
 
+
 .sidenav h3 {
     margin: 1rem;
     color: #aaaaaa;
@@ -35,19 +36,24 @@
 .sidenav .sidenav-items p {
     margin: 0 .5rem;
     font-size: 1rem;
-    color: #aaaaaa;
+    color: black;
     font-weight: 600;
     text-align: left;
 }
 
+.sidenav .sidenav-items .headings {
+    color: #aaaaaa;
+}
+
 .sidenav .sidenav-items img {
     border-radius: 5px;
-    width: 15%;
+    width: 12%;
 }
 
 .sidenav .communities-items {
     padding: .5rem;
 }
+
 .line {
     content: "";
     margin: auto;

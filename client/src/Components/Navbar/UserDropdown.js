@@ -28,7 +28,7 @@ const UserDropdown = () => {
                     </Link>
                 </li>
                 <li>
-                    <div className = "user-name" onClick = { logout }>
+                    <div className = "logout" onClick = { logout }>
                         <FontAwesomeIcon icon = { faSignOutAlt }/>
                         <p>Logout</p>
                     </div>
