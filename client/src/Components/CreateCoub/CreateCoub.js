@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import ReactPlayer from 'react-player';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import Tags from "@yaireo/tagify/dist/react.tagify"
 
 import axios from 'axios';
 
-//context importss
+//context imports
 import SideNavContext from '../../Context/SideNavContext';
 import UserContext from '../../Context/UserContext';
 import OverlayContext from '../../Context/OverlayContext';
@@ -34,6 +35,9 @@ const CreateCoub = () => {
     const [ audioStart, setAudioStart ] = useState('');
     const [ audioDuration, setAudioDuration ] = useState('');
 
+    const [ nextStep, setNextStep ] = useState(false);
+    const [ caption, setCaption ] = useState('');
+    const [ tags, setTags ] = useState([])
     useEffect(() => {
         setSideNav(false)
     },[])
@@ -41,6 +45,8 @@ const CreateCoub = () => {
     const extractAllFrames = async (e) => {
         e.preventDefault();
 
+        let token = localStorage.getItem("auth-token");
+        
         let formData = new FormData();
 
         formData.append("video", video);
@@ -51,8 +57,15 @@ const CreateCoub = () => {
         formData.append("audioStart", audioStart);
         formData.append("audioDuration", audioDuration);
 
+        formData.append("caption", caption);
+        formData.append("tags",tags);
+
+        console.log(formData)
         const request = await axios.post("/api/trim" , formData, {     
-            headers: { 'content-type': 'multipart/form-data' }
+            headers: { 
+                'content-type': 'multipart/form-data',
+                "x-auth-token" : token 
+            }
         })
         
         setVideoURL(request.data.url)
@@ -100,33 +113,36 @@ const CreateCoub = () => {
                 { videoURL &&
                     <>
                         
-                        <ReactPlayer className = "video-player"
-                            url = { videoURL } 
-                            playing = { true } 
-                            controls = { true }
-                            
-                        />
-
-                        <div className = "time">
-                            <label>
-                                <p>Video Start Time (in seconds)</p>
-                            </label>
-                            <input 
-                                type = "number" 
-                                placeholder = "Start Time in seconds" 
-                                onChange = {(e) => setVideoStart(e.target.value)}
+                        <div className = "player-container">
+                            <ReactPlayer className = "video-player"
+                                url = { videoURL } 
+                                playing = { true } 
+                                controls = { true }
+                                
                             />
 
-                            <label>
-                                <p>Video Duration (in seconds)</p>
-                            </label>
-                            <input 
-                                type = "number" 
-                                placeholder = "Duration in seconds" 
-                                onChange = {(e) => setVideoDuration(e.target.value)}
-                            />
+                            <div className = "time">
+                                <label>
+                                    <p>Video Start Time (in seconds)</p>
+                                </label>
+                                <input 
+                                    type = "number" 
+                                    placeholder = "Start Time in seconds" 
+                                    onChange = {(e) => setVideoStart(e.target.value)}
+                                />
 
+                                <label>
+                                    <p>Video Duration (in seconds)</p>
+                                </label>
+                                <input 
+                                    type = "number" 
+                                    placeholder = "Duration in seconds" 
+                                    onChange = {(e) => setVideoDuration(e.target.value)}
+                                />
+
+                            </div>
                         </div>
+
 
                         { !audioURL &&
                             <label htmlFor = "upload-audio-input">
@@ -139,7 +155,7 @@ const CreateCoub = () => {
                         }
                         
                         { audioURL &&
-                            <>
+                            <div className = "player-container">
                                 <AudioPlayer className = "audio-player"
                                     src = { audioURL }
                                 />
@@ -163,7 +179,7 @@ const CreateCoub = () => {
                                         onChange = {(e) => setAudioDuration(e.target.value)}
                                     />
                                 </div>
-                            </>
+                            </div>
                         }
                         
                         <input
@@ -176,7 +192,39 @@ const CreateCoub = () => {
                             style = {{display : "none"}}
                         />
                         
-                        <button>Create</button>
+                        <p 
+                            className = "next-btn"
+                            onClick = { (e) => {
+                                e.preventDefault()
+                                setNextStep(!nextStep)
+                            }}
+                        >Next
+                        </p>
+                        
+                        { nextStep &&
+                            <div className = "create-coub-overlay">
+                                <h1>Describe your coub</h1>
+                                
+                                <div className = "inputs">
+                                    <input
+                                        type = "text"
+                                        onChange = { (e) => setCaption(e.target.value)}
+                                    />
+                                    <Tags
+                                        onChange = {(e) => {
+                                            let tagify = JSON.parse(e.target.value);
+                                            setTags([]);
+                                            tagify.map((tag) => {
+                                                setTags(tags => [...tags,tag.value])
+                                            })
+                                        }}
+                                    />
+                                </div>
+
+                                <button>Create</button>
+                            </div>
+                        }
+                        
 
                     </>    
                 }

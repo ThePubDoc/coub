@@ -5,6 +5,7 @@ const fs = require('fs');
 const aws = require('aws-sdk');
 
 const User = require('../models/user');
+const Coub = require('../models/coub');
 
 aws.config.update({
     secretAccessKey: process.env.AWS_Secret_Access_Key,
@@ -36,9 +37,12 @@ const extractAllFrames = async (req,res) => {
     }
 }
 
-const trim = (req,res) => {
+const trim = async (req,res) => {
     
-    const {videoStart, videoDuration, audioStart, audioDuration} = req.body;
+    const userId = req.user;
+    const userData = await User.findById(userId);
+
+    const {videoStart, videoDuration, audioStart, audioDuration, caption, tags} = req.body;
     
     let video = "";
     let audio = "";
@@ -87,16 +91,26 @@ const trim = (req,res) => {
                     Body: fs.createReadStream("./converted/"+audio.originalname.split(".")[0]+video.originalname)
                 };      
         
-                s3.upload(params , (err,data) => {
+                s3.upload(params , async (err,data) => {
                     if(err){
                         console.log(err)
                     }
                     else{
                         console.log(data)
+                        const coubData = new Coub({
+                            url : data.Location,
+                            caption,
+                            tags,
+                            authorUsername : userData.username,
+                            author : userData.name
+                        })
+
+                        await coubData.save();
                         res.json({"url" : data.Location})
                     }
                 })
 
+                
                 fs.unlink("./converted/"+audio.originalname.split(".")[0]+video.originalname,(err)=>{
                     if(err){
                         console.log(err)
@@ -156,7 +170,6 @@ const trim = (req,res) => {
 
 const getOtherUserInfo = async (req,res) => {
     const user = await User.findOne({username : req.body.username});
-    console.log(user)
     if(!user) {
         return res.status(404).json({msg : "No user found"});
     }

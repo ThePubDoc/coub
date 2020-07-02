@@ -31,7 +31,7 @@ router.route('/signup').post(uploadDP.single("dp"), userController.signup);
 router.route('/login').post(userController.login);
 router.route('/isTokenValid').post(userController.isTokenValid);
 
-router.route('/trim').post(uploadVideos.any(),mainController.trim);
+router.route('/trim').post(auth, uploadVideos.any(),mainController.trim);
 
 router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
 
