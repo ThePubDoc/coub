@@ -16,7 +16,7 @@ import './CreateCoub.css';
 
 //icons imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faTag } from '@fortawesome/free-solid-svg-icons';
 
 
 const CreateCoub = () => {
@@ -46,7 +46,7 @@ const CreateCoub = () => {
         e.preventDefault();
 
         let token = localStorage.getItem("auth-token");
-        
+
         let formData = new FormData();
 
         formData.append("video", video);
@@ -202,26 +202,31 @@ const CreateCoub = () => {
                         </p>
                         
                         { nextStep &&
-                            <div className = "create-coub-overlay">
-                                <h1>Describe your coub</h1>
-                                
-                                <div className = "inputs">
-                                    <input
-                                        type = "text"
-                                        onChange = { (e) => setCaption(e.target.value)}
-                                    />
-                                    <Tags
-                                        onChange = {(e) => {
-                                            let tagify = JSON.parse(e.target.value);
-                                            setTags([]);
-                                            tagify.map((tag) => {
-                                                setTags(tags => [...tags,tag.value])
-                                            })
-                                        }}
-                                    />
+                            <div className = "create-coub-overlay-hero">
+                                <div className = "create-coub-overlay">
+                                    <h1>Describe your coub</h1>
+                                    
+                                    <div className = "inputs">
+                                        <input
+                                            type = "text"
+                                            onChange = { (e) => setCaption(e.target.value)}
+                                            placeholder = "Caption"
+                                        />
+                                        <div className = "tags">
+                                            <FontAwesomeIcon icon = { faTag }/>
+                                            <Tags
+                                                onChange = {(e) => {
+                                                    let tagify = JSON.parse(e.target.value);
+                                                    setTags([]);
+                                                    tagify.map((tag) => {
+                                                        setTags(tags => [...tags,tag.value])
+                                                    })
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <button>Create</button>
                                 </div>
-
-                                <button>Create</button>
                             </div>
                         }
                         
