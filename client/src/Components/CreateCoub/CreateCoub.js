@@ -16,7 +16,7 @@ import './CreateCoub.css';
 
 //icons imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faTag, faCross } from '@fortawesome/free-solid-svg-icons';
 
 
 const CreateCoub = () => {
@@ -203,6 +203,7 @@ const CreateCoub = () => {
                         
                         { nextStep &&
                             <div className = "create-coub-overlay-hero">
+                                <FontAwesomeIcon className = "close" icon = { faCross } onClick = { (e) => setNextStep(false)}/>
                                 <div className = "create-coub-overlay">
                                     <h1>Describe your coub</h1>
                                     
