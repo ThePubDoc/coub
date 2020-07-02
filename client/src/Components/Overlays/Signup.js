@@ -36,24 +36,19 @@ const Signup = ({ setOverlay}) => {
 
     return (
         <div className = "overlay">
-            
-            <form>
-                <FontAwesomeIcon icon = { faCross } onClick = { closeOverlay }/>
-
-                <div className = "form">
-                    <form onSubmit = {(e) => signup(e) }>
-                        <input type = "text" value = {name} placeholder = "Enter Your Name" onChange = {(e) => setName(e.target.value)}/>
-                        <input type = "text" value = {username} placeholder = "Enter Your Username" onChange = {(e) => setUsername(e.target.value)}/>
-                        <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
-                        <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
-                        <input 
-                            type = "file"
-                            onChange = { (e) => setDP(e.target.files[0]) } 
-                        />
-                        <button>Sign Up</button>
-                    </form>
-                </div>
-
+            <FontAwesomeIcon className = "close" icon = { faCross } onClick = { closeOverlay }/>
+            <form onSubmit = {(e) => signup(e)}>
+                <h1>Sign Up</h1>
+                <input type = "text" value = {name} placeholder = "Enter Your Name" onChange = {(e) => setName(e.target.value)}/>
+                <input type = "text" value = {username} placeholder = "Enter Your Username" onChange = {(e) => setUsername(e.target.value)}/>
+                <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
+                <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
+                <input 
+                    type = "file"
+                    onChange = { (e) => setDP(e.target.files[0]) } 
+                />
+                <button>Sign Up</button>
+                    
             </form>
         </div>
     )

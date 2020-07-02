@@ -38,16 +38,12 @@ const Login = ({ setOverlay}) => {
 
     return (
         <div className = "overlay">
-            
+            <FontAwesomeIcon className = "close" icon = { faCross } onClick = { closeOverlay }/>
             <form>
-                <FontAwesomeIcon icon = { faCross } onClick = { closeOverlay }/>
-
-                <div className = "form">
-                    <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
-                    <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
-                    <button onClick = {(e) => login(e) }>Login</button>
-                </div>
-
+                <h1>Login</h1>
+                <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
+                <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
+                <button onClick = {(e) => login(e) }>Login</button>
             </form>
         </div>
     )
