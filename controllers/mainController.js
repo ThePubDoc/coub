@@ -106,6 +106,13 @@ const trim = async (req,res) => {
                         })
 
                         await coubData.save();
+
+                        const updateUser = await User.findOneAndUpdate({
+                            _id : userData._id
+                        }, {
+                            $push : { coubs : coubData._id }
+                        });
+                        
                         res.json({"url" : data.Location})
                     }
                 })

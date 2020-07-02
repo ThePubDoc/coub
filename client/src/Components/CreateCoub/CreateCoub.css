@@ -126,8 +126,12 @@ label {
     width: 100%;
 }
 
+.create-coub-overlay-hero .create-coub-overlay .inputs span {
+    width: 100%;
+}
+
 .create-coub-overlay-hero .create-coub-overlay .inputs input {
-    width: 28rem;
+    width: -webkit-fill-available;
     padding: .5rem 1rem;
     margin: auto;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -147,7 +151,7 @@ label {
 }
 
 .create-coub-overlay-hero .create-coub-overlay .inputs .tagify {
-    width: 27rem;
+    width: -webkit-fill-available;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: .5rem 1rem;

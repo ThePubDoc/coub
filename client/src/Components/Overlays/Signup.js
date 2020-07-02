@@ -27,7 +27,7 @@ const Signup = ({ setOverlay}) => {
         await axios.post("/api/signup" , formData , {
             headers: { 'content-type': 'multipart/form-data' }
         });
-
+        setOverlay("login");
     }
 
     const closeOverlay = () => {

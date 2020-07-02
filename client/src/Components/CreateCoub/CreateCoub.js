@@ -208,22 +208,28 @@ const CreateCoub = () => {
                                     <h1>Describe your coub</h1>
                                     
                                     <div className = "inputs">
-                                        <input
-                                            type = "text"
-                                            onChange = { (e) => setCaption(e.target.value)}
-                                            placeholder = "Caption"
-                                        />
+                                        
+                                        <span>
+                                            <input
+                                                type = "text"
+                                                onChange = { (e) => setCaption(e.target.value)}
+                                                placeholder = "Caption"
+                                            />
+                                        </span>
+
                                         <div className = "tags">
                                             <FontAwesomeIcon icon = { faTag }/>
-                                            <Tags
-                                                onChange = {(e) => {
-                                                    let tagify = JSON.parse(e.target.value);
-                                                    setTags([]);
-                                                    tagify.map((tag) => {
-                                                        setTags(tags => [...tags,tag.value])
-                                                    })
-                                                }}
-                                            />
+                                            <span>
+                                                <Tags
+                                                    onChange = {(e) => {
+                                                        let tagify = JSON.parse(e.target.value);
+                                                        setTags([]);
+                                                        tagify.map((tag) => {
+                                                            setTags(tags => [...tags,tag.value])
+                                                        })
+                                                    }}
+                                                />
+                                            </span>
                                         </div>
                                     </div>
                                     <button>Create</button>
