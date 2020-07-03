@@ -149,12 +149,27 @@ const trim = async (req,res) => {
                 Body: fs.createReadStream("./converted/"+video.originalname)
             };      
     
-            s3.upload(params , (err,data) => {
+            s3.upload(params , async (err,data) => {
                 if(err){
                     console.log(err)
                 }
                 else{
                     console.log(data)
+                    const coubData = new Coub({
+                        url : data.Location,
+                        caption,
+                        tags,
+                        authorUsername : userData.username,
+                        author : userData.name
+                    })
+
+                    await coubData.save();
+
+                    const updateUser = await User.findOneAndUpdate({
+                        _id : userData._id
+                    }, {
+                        $push : { coubs : coubData._id }
+                    });
                     res.json({"url" : data.Location})
                 }
             })

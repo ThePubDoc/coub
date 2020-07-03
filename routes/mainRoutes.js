@@ -36,6 +36,6 @@ router.route('/trim').post(auth, uploadVideos.any(),mainController.trim);
 router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
 
 router.route('/user').get(auth, userController.user);
-
+router.route('/getMyCoubs').get(auth, userController.getMyCoubs);
 
 module.exports = router;

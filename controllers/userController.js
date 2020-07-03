@@ -1,9 +1,11 @@
 const User = require('../models/user');
+const Coub = require('../models/coub');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const aws = require('aws-sdk');
 const fs = require('fs');
+const { use } = require('../routes/mainRoutes');
 
 aws.config.update({
     secretAccessKey: process.env.AWS_Secret_Access_Key,
@@ -147,9 +149,47 @@ const user = async (req, res) => {
     }) 
 }
 
+const getMyCoubs = async (req,res) => {
+
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page-1)*limit;
+    const lastIndex = page*limit;
+
+    const user = await User.findById(req.user);
+    const queryResult = {};
+
+    // if(lastIndex < await Coub.countDocuments().exec()){
+    //     queryResult.next = {
+    //         page : page + 1,
+    //         limit : limit,
+    //     }
+    // }
+
+    if(lastIndex < user.coubs.length){
+        queryResult.next = {
+            page : page + 1,
+            limit : limit,
+        }
+    }
+
+    if( startIndex > 0) {
+        queryResult.previous = {
+            page : page -1,
+            limit : limit,
+        }
+    }
+
+    const myCoubs = await Coub.find({authorUsername : user.username}).limit(limit).skip(startIndex).exec();
+    queryResult.results = myCoubs;
+    res.json(queryResult)
+}
+
 module.exports = {
     signup,
     login,
     isTokenValid,
-    user
+    user,
+    getMyCoubs
 }
