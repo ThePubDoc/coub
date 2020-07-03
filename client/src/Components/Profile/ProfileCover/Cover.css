@@ -12,7 +12,6 @@
 }
 
 .cover-hero .user-info-hero .edit-cover-hero {
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

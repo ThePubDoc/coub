@@ -5,6 +5,9 @@
     height: 2.5rem;
     padding: 1rem;
     border-bottom: 1px solid #f7f7f7;
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
 .navbar .navbar-elements-container {
