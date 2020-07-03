@@ -220,13 +220,6 @@ const getAllCoubs = async (req,res) => {
         }
     }
 
-    if(lastIndex < user.coubs.length){
-        queryResult.next = {
-            page : page + 1,
-            limit : limit,
-        }
-    }
-
     if( startIndex > 0) {
         queryResult.previous = {
             page : page -1,
