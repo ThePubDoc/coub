@@ -40,4 +40,6 @@ router.route('/getMyCoubs').get(auth, userController.getMyCoubs);
 
 router.route('/getAllCoubs').get(mainController.getAllCoubs);
 
+router.route('/getUserAllCoubs').get(mainController.getUserAllCoubs);
+
 module.exports = router;

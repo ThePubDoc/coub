@@ -232,9 +232,45 @@ const getAllCoubs = async (req,res) => {
     res.json(queryResult)
 }
 
+const getUserAllCoubs = async (req,res) => {
+
+    const username = req.query.username;
+
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page-1)*limit;
+    const lastIndex = page*limit;
+
+    const queryResult = {};
+
+    const user = await User.findOne({username : username});
+
+    if(lastIndex < user.coubs.length){
+        queryResult.next = {
+            page : page + 1,
+            limit : limit,
+        }
+    }
+
+    if( startIndex > 0) {
+        queryResult.previous = {
+            page : page -1,
+            limit : limit,
+        }
+    }
+
+    const coubs = await Coub.find({authorUsername : username}).limit(limit).skip(startIndex).exec();
+    queryResult.results = coubs;
+    console.log(coubs)
+    res.json(queryResult)
+}
+
+
 module.exports = {
     index,
     trim,
     getOtherUserInfo,
     getAllCoubs,
+    getUserAllCoubs
 }
