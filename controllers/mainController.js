@@ -205,8 +205,43 @@ const getOtherUserInfo = async (req,res) => {
     })
 }
 
+const getAllCoubs = async (req,res) => {
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page-1)*limit;
+    const lastIndex = page*limit;
+
+    const queryResult = {};
+    if(lastIndex < await Coub.countDocuments().exec()){
+        queryResult.next = {
+            page : page + 1,
+            limit : limit,
+        }
+    }
+
+    if(lastIndex < user.coubs.length){
+        queryResult.next = {
+            page : page + 1,
+            limit : limit,
+        }
+    }
+
+    if( startIndex > 0) {
+        queryResult.previous = {
+            page : page -1,
+            limit : limit,
+        }
+    }
+
+    const coubs = await Coub.find().limit(limit).skip(startIndex).exec();
+    queryResult.results = coubs;
+    res.json(queryResult)
+}
+
 module.exports = {
     index,
     trim,
-    getOtherUserInfo
+    getOtherUserInfo,
+    getAllCoubs,
 }

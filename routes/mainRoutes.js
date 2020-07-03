@@ -38,4 +38,6 @@ router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
 router.route('/user').get(auth, userController.user);
 router.route('/getMyCoubs').get(auth, userController.getMyCoubs);
 
+router.route('/getAllCoubs').get(mainController.getAllCoubs);
+
 module.exports = router;
