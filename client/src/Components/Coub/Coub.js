@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
@@ -35,11 +36,19 @@ const Coub = ({ url, id }) => {
 
             <div className = "coub-details-hero">
                 <div className = "creator-details">
-                    <img src = { userDetails.dp }/>
+                    
+                    <Link to = { `/${ userDetails.username }`} className = "dp">
+                        <img src = { userDetails.dp }/>                    
+                    </Link>
+                    
                     <h2>{ coubDetails.caption }</h2>
+                    
                     <div className = "creator">
                         <p>Created By</p>
-                        <h3>{ userDetails.name }</h3>
+                        <Link to = { `/${ userDetails.username }`}>
+                            <h3>{ userDetails.name }</h3>
+                        </Link>
+                        
                     </div>
                 </div>
 
