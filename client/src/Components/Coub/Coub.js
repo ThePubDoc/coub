@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
 
+import './Coub.css';
+
 const Coub = ({ url, id }) => {
 
     const [ author, setAuthor ] = useState({});
@@ -18,11 +20,17 @@ const Coub = ({ url, id }) => {
     },[])
 
     return (
-        <div>
+        <div className = "coub-hero">
             <ReactPlayer 
+                width = '100%'
+                height = 'auto'
                 url = { url } 
                 controls = { true }
             />
+
+            <div className = "coub-details">
+                
+            </div>
         </div>
     )
 }

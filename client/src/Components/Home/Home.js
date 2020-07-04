@@ -7,6 +7,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import Coub from '../Coub/Coub';
 
+import './Home.css';
+
 const Home = () => {
 
     const { setSideNav } = useContext(SideNavContext);
@@ -42,7 +44,7 @@ const Home = () => {
         }
     }
     return (
-        <div>
+        <div className = "coubs-section-hero">
             <InfiniteScroll
                 dataLength = { coubs.length }
                 next = { fetchCoubs }

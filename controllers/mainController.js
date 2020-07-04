@@ -268,10 +268,21 @@ const getUserAllCoubs = async (req,res) => {
 
 const getCoubDetails = async (req,res) => {
     const id = req.query.coubid;
-    console.log(id)
+
     const coubDetails = await Coub.findOne({_id : id});
-    console.log(coubDetails)
-    res.json(coubDetails);
+
+    const user = await User.findOne({username : coubDetails.authorUsername});
+
+    const userDetails = {
+        name : user.name,
+        username : user.username,
+        dp : user.dp
+    }
+
+    res.json({
+        coubDetails,
+        userDetails
+    });
 }
 
 module.exports = {
