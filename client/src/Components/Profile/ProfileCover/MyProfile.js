@@ -8,6 +8,8 @@ import { faCog, faComment, faSortDown, faImage, faPlus } from '@fortawesome/free
 
 import UserContext from '../../../Context/UserContext';
 
+import Coub from '../../Coub/Coub';
+
 import './Cover.css';
 
 const MyProfile = () => {
@@ -90,20 +92,24 @@ const MyProfile = () => {
                     </div>
                 </div>
             </div>
-            <InfiniteScroll
-                dataLength = { coubs.length }
-                next = { fetchCoubs }
-                hasMore = { hasMore }
-                loader = {<h4>Loading</h4>}
-            >
-                { coubs.map(coub => 
-                    <ReactPlayer
-                        key = { coub._id }
-                        url = { coub.url } 
-                        controls = { true }
-                    />
-                )}
-            </InfiniteScroll>  
+            <div className = "profile-coubs">
+                <InfiniteScroll
+                    dataLength = { coubs.length }
+                    next = { fetchCoubs }
+                    hasMore = { hasMore }
+                    loader = {<h4>Loading</h4>}
+                >
+                    { coubs.map(coub => 
+                        // <ReactPlayer
+                        //     key = { coub._id }
+                        //     url = { coub.url } 
+                        //     controls = { true }
+                        // />
+                        <Coub key = { coub._id } url = { coub.url } id  = { coub._id }/>
+                    )}
+                </InfiniteScroll>  
+            </div>
+
         </>
     )
 }

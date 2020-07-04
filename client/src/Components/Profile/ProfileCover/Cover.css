@@ -137,3 +137,8 @@
 .cover-hero .user-info-hero .info-container button:hover {
     border: 2px solid blue;
 }
+
+.profile-coubs {
+    width: 50%;
+    margin: auto;
+}
