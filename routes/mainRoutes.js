@@ -31,15 +31,16 @@ router.route('/signup').post(uploadDP.single("dp"), userController.signup);
 router.route('/login').post(userController.login);
 router.route('/isTokenValid').post(userController.isTokenValid);
 
-router.route('/trim').post(auth, uploadVideos.any(),mainController.trim);
-
-router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
-
 router.route('/user').get(auth, userController.user);
 router.route('/getMyCoubs').get(auth, userController.getMyCoubs);
 
-router.route('/getAllCoubs').get(mainController.getAllCoubs);
 
+router.route('/trim').post(auth, uploadVideos.any(),mainController.trim);
+router.route('/getOtherUserInfo').post(mainController.getOtherUserInfo);
+
+router.route('/getAllCoubs').get(mainController.getAllCoubs);
 router.route('/getUserAllCoubs').get(mainController.getUserAllCoubs);
+router.route('/getCoubDetails').get(mainController.getCoubDetails);
+
 
 module.exports = router;

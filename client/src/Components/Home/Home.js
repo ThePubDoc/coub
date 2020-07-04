@@ -1,9 +1,11 @@
 import React, {useState, useContext, useEffect } from 'react'
+import ReactPlayer from 'react-player';
+import axios from 'axios';
 
 import SideNavContext from '../../Context/SideNavContext';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import ReactPlayer from 'react-player';
-import axios from 'axios';
+
+import Coub from '../Coub/Coub';
 
 const Home = () => {
 
@@ -48,11 +50,7 @@ const Home = () => {
                 loader = {<h4>Loading</h4>}
             >
                 { coubs.map(coub => 
-                    <ReactPlayer
-                        key = { coub._id }
-                        url = { coub.url } 
-                        controls = { true }
-                    />
+                    <Coub key = { coub._id } url = { coub.url } id  = { coub._id }/>
                 )}
             </InfiniteScroll>  
         </div>
