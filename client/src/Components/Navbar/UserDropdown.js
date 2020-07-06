@@ -5,6 +5,9 @@ import UserContext from '../../Context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { StyledUserDropdown, StyledLogout, StyledLogoutIcon,
+        StyledUsername, StyledDropdownDp } from './Navbar.style';
+
 const UserDropdown = () => {
 
     const { user, setUser } = useContext(UserContext);
@@ -19,22 +22,22 @@ const UserDropdown = () => {
     
     }
     return (
-        <div className = "user-sub-menu">
+        <StyledUserDropdown>
             <ul>
                 <li>
-                    <Link to = { `/${ user.userData.username }`} className = "user-name">
-                        <img src = { user.userData.dp } alt = ""/>
+                    <StyledUsername to = { `/${ user.userData.username }`}>
+                        <StyledDropdownDp src = { user.userData.dp }/>
                         <p>{ user.userData.name }</p>
-                    </Link>
+                    </StyledUsername>
                 </li>
                 <li>
-                    <div className = "logout" onClick = { logout }>
-                        <FontAwesomeIcon icon = { faSignOutAlt }/>
+                    <StyledLogout>
+                        <StyledLogoutIcon icon = { faSignOutAlt }/>
                         <p>Logout</p>
-                    </div>
+                    </StyledLogout>
                 </li>
             </ul>
-        </div>
+        </StyledUserDropdown>
     )
 }
 

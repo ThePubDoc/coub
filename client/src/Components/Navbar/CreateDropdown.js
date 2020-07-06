@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+import { StyledSubMenu } from './Navbar.style';
 const Dropdown = () => {
     return (
-        <div className = "sub-menu">
+        <StyledSubMenu>
             <ul>
                 <li>
                     <Link to = "/create"><p>Create Coub</p></Link>
@@ -12,7 +13,7 @@ const Dropdown = () => {
                     <Link to = "/createStory"><p>Create</p></Link>
                 </li>
             </ul>
-        </div>
+        </StyledSubMenu>
     )
 }
 

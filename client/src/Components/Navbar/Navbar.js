@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSearch, faBell, faComment, faUsers } from '@fortawesome/free-solid-svg-icons';
 
+
 import CreateDropdown from './CreateDropdown';
 import Button from '../Button/Button';
 import Signup from '../Overlays/Signup';
@@ -15,6 +16,13 @@ import OverlayContext from '../../Context/OverlayContext';
 
 import './Navbar.css'
 
+
+import { 
+    StyledNav, StyledNavbarElementsContainer, StyledImg, 
+    StyledSearchBar, StyledSearchIcon, StyledInput,
+    StyledDropdown, StyledPlusIcon, StyledUser,
+    StyledUserDp, StyledUserIcons } from './Navbar.style';
+
 const Navbar = ({ Logo }) => {
 
     
@@ -22,29 +30,26 @@ const Navbar = ({ Logo }) => {
     const { overlay, setOverlay } = useContext(OverlayContext);
 
     return (
-        <div className = "navbar">
-            <div className = "navbar-elements-container">
+        <StyledNav>
+            <StyledNavbarElementsContainer>
                 <Link to = "/">
-                    <img src = { Logo } alt = ""/>
+                    <StyledImg src = { Logo }/>          
                 </Link>
-                
-                <div className = "search-coub">
-                    <FontAwesomeIcon className = "search" icon = { faSearch }/>
-                    <input 
-                        type = "text"
-                        placeholder = "Search Coub"
-                    />
-                </div>
-                
-                <div className = "dropdown">
-                    <FontAwesomeIcon className = "plus" icon = { faPlus }/>
-                    <p>Create</p>
-                    <CreateDropdown/>                
-                </div>
-            </div>
-
             
-            <div className = "navbar-elements-container">
+                <StyledSearchBar>
+                    <StyledSearchIcon icon = { faSearch} />
+                    <StyledInput type = { "text" } placeholder = { "Search Coub" }/>
+                </StyledSearchBar>
+                
+                <StyledDropdown>
+                    <StyledPlusIcon icon = { faPlus }/>
+                    <p>Create</p>
+                    <CreateDropdown/>
+                </StyledDropdown>
+
+            </StyledNavbarElementsContainer>
+            
+            <StyledNavbarElementsContainer>
                 { !user.userData ? (
                     <>
                         <Button
@@ -65,21 +70,24 @@ const Navbar = ({ Logo }) => {
                     </>
                     ) : (
                         <>
-                            <FontAwesomeIcon icon = { faComment } className = "user-icons"/>
-                            <FontAwesomeIcon icon = { faUsers } className = "user-icons"/>
-                            <FontAwesomeIcon icon = { faBell } className = "user-icons"/>
-                            <div className = "user">
-                                <img src = { user.userData.dp } className = "user-icons dp" alt = ""/>
+                            <StyledUserIcons icon = { faComment }/>
+                            <StyledUserIcons icon = { faUsers }/>
+                            <StyledUserIcons icon = { faBell }/>
+
+                            <StyledUser>
+                                <StyledUserDp src = { user.userData.dp }/>
                                 <UserDropdown/>
-                            </div>
+                            </StyledUser>
                             
                         </>
                     )}
-                
-            </div>
+            </StyledNavbarElementsContainer>
+            
             { overlay === "signup" && <Signup overlay = { overlay } setOverlay = {setOverlay }/> }
             { overlay === "login" && <Login overlay = { overlay } setOverlay = {setOverlay }/> }
-        </div>
+
+        </StyledNav>
+            
     )
 }
 
