@@ -10,7 +10,6 @@ import './Coub.css';
 
 const Coub = ({ url, id }) => {
 
-    const [ author, setAuthor ] = useState({});
     const [ coubDetails, setCoubDetails ] = useState({});
     const [ coubId, setCoubId ] = useState(id);
     const [ userDetails, setUserDetails ] = useState({});
