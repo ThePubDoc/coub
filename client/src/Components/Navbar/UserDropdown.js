@@ -31,7 +31,7 @@ const UserDropdown = () => {
                     </StyledUsername>
                 </li>
                 <li>
-                    <StyledLogout>
+                    <StyledLogout onClick = { logout }>
                         <StyledLogoutIcon icon = { faSignOutAlt }/>
                         <p>Logout</p>
                     </StyledLogout>

@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 
 import axios from 'axios';
 
-import './Overlays.css';
 import { faCross } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { StyledOverlay, StyledButton, StyledClose, 
+        StyledForm, StyledInput } from './Overlay.style';
 
 import UserContext from '../../Context/UserContext';
 
@@ -37,15 +39,15 @@ const Login = ({ setOverlay}) => {
     }
 
     return (
-        <div className = "overlay">
-            <FontAwesomeIcon className = "close" icon = { faCross } onClick = { closeOverlay }/>
-            <form>
+        <StyledOverlay>
+            <StyledClose onClick = { closeOverlay }/>
+            <StyledForm>
                 <h1>Login</h1>
-                <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
-                <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
-                <button onClick = {(e) => login(e) }>Login</button>
-            </form>
-        </div>
+                <StyledInput type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
+                <StyledInput type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
+                <StyledButton onClick = {(e) => login(e) }>Login</StyledButton>
+            </StyledForm>
+        </StyledOverlay>
     )
 }
 

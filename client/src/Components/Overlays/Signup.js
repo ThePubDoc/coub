@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-import './Overlays.css';
-import { faCross } from '@fortawesome/free-solid-svg-icons';
+import { StyledOverlay, StyledButton, StyledClose, 
+    StyledForm, StyledInput } from './Overlay.style';
+
+import { faCross, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Signup = ({ setOverlay}) => {
@@ -35,22 +37,22 @@ const Signup = ({ setOverlay}) => {
     }
 
     return (
-        <div className = "overlay">
-            <FontAwesomeIcon className = "close" icon = { faCross } onClick = { closeOverlay }/>
-            <form onSubmit = {(e) => signup(e)}>
+        <StyledOverlay>
+            <StyledClose onClick = { closeOverlay }/>
+            <StyledForm onSubmit = {(e) => signup(e)}>
                 <h1>Sign Up</h1>
-                <input type = "text" value = {name} placeholder = "Enter Your Name" onChange = {(e) => setName(e.target.value)}/>
-                <input type = "text" value = {username} placeholder = "Enter Your Username" onChange = {(e) => setUsername(e.target.value)}/>
-                <input type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
-                <input type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
-                <input 
+                <StyledInput type = "text" value = {name} placeholder = "Enter Your Name" onChange = {(e) => setName(e.target.value)}/>
+                <StyledInput type = "text" value = {username} placeholder = "Enter Your Username" onChange = {(e) => setUsername(e.target.value)}/>
+                <StyledInput type = "email" value = {email} placeholder = "Enter your email" onChange = {(e) => setEmail(e.target.value)}/>
+                <StyledInput type = "password" value = {password} placeholder = "Enter password" onChange = {(e) => setPassword(e.target.value)}/>
+                <StyledInput 
                     type = "file"
                     onChange = { (e) => setDP(e.target.files[0]) } 
                 />
-                <button>Sign Up</button>
+                <StyledButton>Sign Up</StyledButton>
                     
-            </form>
-        </div>
+            </StyledForm>
+        </StyledOverlay>
     )
 }
 
