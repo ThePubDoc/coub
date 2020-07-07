@@ -14,9 +14,6 @@ import UserDropdown from './UserDropdown';
 import UserContext from '../../Context/UserContext';
 import OverlayContext from '../../Context/OverlayContext';
 
-import './Navbar.css'
-
-
 import { 
     StyledNav, StyledNavbarElementsContainer, StyledImg, 
     StyledSearchBar, StyledSearchIcon, StyledInput,
