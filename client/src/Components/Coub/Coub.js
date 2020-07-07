@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
 
-import './Coub.css';
+import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
+        StyledCreatorDetails, StyledDp, StyledDpLink, 
+        StyledStat, StyledStatsHero, StyledTagsViewsHero,
+        StyledVideo, StyledViews } from './Coub.style';
 
 const Coub = ({ url, id }) => {
 
@@ -25,7 +28,7 @@ const Coub = ({ url, id }) => {
     },[])
 
     return (
-        <div className = "coub-hero">
+        <StyledCoubHero>
             <ReactPlayer 
                 width = '100%'
                 height = 'auto'
@@ -33,53 +36,53 @@ const Coub = ({ url, id }) => {
                 controls = { true }
             />
 
-            <div className = "coub-details-hero">
-                <div className = "creator-details">
+            <StyledCoubDetailsHero>
+                <StyledCreatorDetails>
                     
-                    <Link to = { `/${ userDetails.username }`} className = "dp">
-                        <img src = { userDetails.dp }/>                    
-                    </Link>
+                    <StyledDpLink to = { `/${ userDetails.username }`}>
+                        <StyledDp src = { userDetails.dp }/>                    
+                    </StyledDpLink>
                     
                     <h2>{ coubDetails.caption }</h2>
                     
-                    <div className = "creator">
+                    <StyledCreator>
                         <p>Created By</p>
                         <Link to = { `/${ userDetails.username }`}>
                             <h3>{ userDetails.name }</h3>
                         </Link>
                         
-                    </div>
-                </div>
+                    </StyledCreator>
+                </StyledCreatorDetails>
 
-                <div className = "stats-hero">
-                    <div className = "stat">
+                <StyledStatsHero>
+                    <StyledStat>
                         <FontAwesomeIcon icon = { faHeart }/>
                         <p>{ coubDetails.hearts }</p>
-                    </div>
+                    </StyledStat>
 
-                    <div className = "stat">
+                    <StyledStat>
                         <FontAwesomeIcon icon = { faRetweet }/>
                         <p>0</p>
-                    </div>
+                    </StyledStat>
 
-                    <div className = "stat">
+                    <StyledStat>
                         <FontAwesomeIcon icon = { faRetweet }/>
                         <p>0</p>
-                    </div>
-                </div>
+                    </StyledStat>
+                </StyledStatsHero>
 
-            </div>
+            </StyledCoubDetailsHero>
 
-            <div className = "tags-views-hero">
+            <StyledTagsViewsHero>
                 <div className = "tags">
                     { coubDetails.tags }
                 </div>
 
-                <div className = "views">
+                <StyledViews>
                     <p>{ coubDetails.views} Views</p>
-                </div>
-            </div>
-        </div>
+                </StyledViews>
+            </StyledTagsViewsHero>
+        </StyledCoubHero>
     )
 }
 
