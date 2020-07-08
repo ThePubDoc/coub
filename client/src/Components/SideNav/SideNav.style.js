@@ -40,7 +40,7 @@ export const StyledSideNavItems = styled.div`
 `
 
 export const StyledIcons = styled(FontAwesomeIcon)`
-    width: 10%;
+    min-width: 10%;
 `
 
 export const StyledHeadings = styled.p`
