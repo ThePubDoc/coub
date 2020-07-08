@@ -9,11 +9,13 @@ import { faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
 import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
         StyledCreatorDetails, StyledDp, StyledDpLink, 
         StyledStat, StyledStatsHero, StyledTagsViewsHero,
-        StyledVideo, StyledViews } from './Coub.style';
+        StyledVideo, StyledViews, StyledTags, StyledTag } from './Coub.style';
 
 const Coub = ({ url, id }) => {
 
-    const [ coubDetails, setCoubDetails ] = useState({});
+    const [ coubDetails, setCoubDetails ] = useState({
+        tags : []
+    });
     const [ coubId, setCoubId ] = useState(id);
     const [ userDetails, setUserDetails ] = useState({});
 
@@ -74,9 +76,11 @@ const Coub = ({ url, id }) => {
             </StyledCoubDetailsHero>
 
             <StyledTagsViewsHero>
-                <div className = "tags">
-                    { coubDetails.tags }
-                </div>
+                <StyledTags>
+                    { coubDetails.tags.map((tag) => (
+                        <StyledTag>{ tag }</StyledTag>
+                    )) }
+                </StyledTags>
 
                 <StyledViews>
                     <p>{ coubDetails.views} Views</p>

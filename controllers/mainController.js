@@ -42,8 +42,8 @@ const trim = async (req,res) => {
     const userId = req.user;
     const userData = await User.findById(userId);
 
-    const {videoStart, videoDuration, audioStart, audioDuration, caption, tags} = req.body;
-    
+    const {videoStart, videoDuration, audioStart, audioDuration, caption} = req.body;
+    let tags = req.body.tags.split(','); 
     let video = "";
     let audio = "";
     

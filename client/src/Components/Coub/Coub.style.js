@@ -82,3 +82,19 @@ export const StyledViews = styled.div`
         font-size: 1.2rem;
     }
 `
+
+export const StyledTags = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+`
+
+export const StyledTag = styled.p`
+    background-color: #f7f7f7;
+    padding: .5rem 1rem;
+    color : gray;
+    margin: 0 .2rem;
+    border-radius: 10px; 
+`
+
