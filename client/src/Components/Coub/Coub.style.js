@@ -77,6 +77,8 @@ export const StyledTagsViewsHero = styled.div`
 `
 
 export const StyledViews = styled.div`
+    margin-left: 2rem;
+    
     p {
         color: #999999;
         font-size: 1.2rem;
@@ -87,7 +89,8 @@ export const StyledTags = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
 `
 
 export const StyledTag = styled.p`
