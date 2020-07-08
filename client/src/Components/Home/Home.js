@@ -7,7 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import Coub from '../Coub/Coub';
 
-import './Home.css';
+import { StyledCoubsSectionHero } from './Home.style';
 
 const Home = () => {
 
@@ -44,7 +44,7 @@ const Home = () => {
         }
     }
     return (
-        <div className = "coubs-section-hero">
+        <StyledCoubsSectionHero>
             <InfiniteScroll
                 dataLength = { coubs.length }
                 next = { fetchCoubs }
@@ -55,7 +55,7 @@ const Home = () => {
                     <Coub key = { coub._id } url = { coub.url } id  = { coub._id }/>
                 )}
             </InfiniteScroll>  
-        </div>
+        </StyledCoubsSectionHero>
     )
 }
 
