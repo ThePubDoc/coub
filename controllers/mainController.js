@@ -298,8 +298,22 @@ const likeCoub = async (req,res) => {
         $push : { likedBy : req.user },
         hearts : hearts+1,
     });
-    console.log(updateCoub);
+    res.json(true)
 }
+
+const dislikeCoub = async (req,res) => {
+    const { coubId } = req.body;
+    const coubDetails = await Coub.findById(coubId);
+    const hearts = coubDetails.hearts;
+    const updateCoub = await Coub.findByIdAndUpdate({
+        _id : coubId
+    }, {
+        $pull : { likedBy : req.user },
+        hearts : hearts-1,
+    });
+    res.json(false)
+}
+
 
 module.exports = {
     index,
@@ -308,5 +322,6 @@ module.exports = {
     getAllCoubs,
     getUserAllCoubs,
     getCoubDetails,
-    likeCoub
+    likeCoub,
+    dislikeCoub,
 }

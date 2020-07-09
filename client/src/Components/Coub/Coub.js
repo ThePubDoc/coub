@@ -1,5 +1,5 @@
 //Libraries Import
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useLayoutEffect } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -39,10 +39,9 @@ const Coub = ({ url, id }) => {
             setUserDetails(coubRes.data.userDetails);
         }
         getCoubDetails();
-    },[])
+    },[likeByMe])
 
     useEffect(() => {
-
         const checkLikeByMe = () => {
             if(user.userData){
                 if(coubDetails.likedBy.includes(user.userData.id)){
@@ -59,7 +58,7 @@ const Coub = ({ url, id }) => {
         
         checkLikeByMe();
 
-    },[user])
+    },[user, likeByMe, coubDetails])
 
 
     const like = async (e) => {
@@ -70,10 +69,18 @@ const Coub = ({ url, id }) => {
                 "x-auth-token" : token,
             }
         })
+        setLikeByMe(likeRes.data)
     }
 
     const dislike = async (e) => {
-
+        e.preventDefault();
+        let token = localStorage.getItem("auth-token");
+        const likeRes = await axios.post('/api/dislike',  { coubId }, {
+            headers : {
+                "x-auth-token" : token,
+            }
+        })
+        setLikeByMe(likeRes.data)
     }
 
     return (

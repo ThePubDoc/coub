@@ -43,5 +43,7 @@ router.route('/getUserAllCoubs').get(mainController.getUserAllCoubs);
 router.route('/getCoubDetails').get(mainController.getCoubDetails);
 
 router.route('/like').post(auth, mainController.likeCoub);
+router.route('/dislike').post(auth, mainController.dislikeCoub);
+
 
 module.exports = router;
