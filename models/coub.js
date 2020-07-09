@@ -10,6 +10,7 @@ const coubSchema = new schema({
     author : { type : String, required : true },
     hearts : { type : Number, default : 0 },
     views : { type : Number, default : 0},
+    likedBy : { type : Array }
 },{timestamps : true})
 
 module.exports = coubs = mongoose.model("coubs" , coubSchema);

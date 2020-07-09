@@ -1,33 +1,70 @@
-import React, { useState, useEffect } from 'react';
+//Libraries Import
+import React, { useState, useEffect, useContext } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+//Icons Import
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
 
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+
+//Context Import
+import UserContext from '../../Context/UserContext';
+
+//Styled Components Import
 import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
         StyledCreatorDetails, StyledDp, StyledDpLink, 
         StyledStat, StyledStatsHero, StyledTagsViewsHero,
         StyledVideo, StyledViews, StyledTags, StyledTag } from './Coub.style';
 
+    
 const Coub = ({ url, id }) => {
 
+    const { user } = useContext(UserContext);
+
     const [ coubDetails, setCoubDetails ] = useState({
-        tags : []
+        tags : [],
+        likedBy : [],
     });
     const [ coubId, setCoubId ] = useState(id);
     const [ userDetails, setUserDetails ] = useState({});
+    const [ likeByMe, setLikeByMe ] = useState(false);
 
     useEffect(() => {
         const getCoubDetails = async () => {
             const coubRes = await axios.get(`/api/getCoubDetails?coubid=${coubId}`);
             setCoubDetails(coubRes.data.coubDetails);
             setUserDetails(coubRes.data.userDetails);
+            
+            if(user.userData){
+                if(coubDetails.likedBy.includes(user.userData.id)){
+                    setLikeByMe(true);                
+                }
+                else{
+                    setLikeByMe(false);
+                }
+            }
         }
 
         getCoubDetails();
-    },[])
+
+    },[userDetails])
+
+    const like = async (e) => {
+        e.preventDefault();
+        let token = localStorage.getItem("auth-token");
+        const likeRes = await axios.post('/api/like',  { coubId }, {
+            headers : {
+                "x-auth-token" : token,
+            }
+        })
+    }
+
+    const dislike = async (e) => {
+        
+    }
 
     return (
         <StyledCoubHero>
@@ -58,7 +95,11 @@ const Coub = ({ url, id }) => {
 
                 <StyledStatsHero>
                     <StyledStat>
-                        <FontAwesomeIcon icon = { faHeart }/>
+                        { likeByMe ? (
+                            <AiFillHeart onClick = { (e) => dislike(e) }/>
+                        ) : (
+                            <AiOutlineHeart onClick = { (e) => like(e) }/>
+                        )}
                         <p>{ coubDetails.hearts }</p>
                     </StyledStat>
 

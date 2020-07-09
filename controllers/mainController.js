@@ -6,6 +6,7 @@ const aws = require('aws-sdk');
 
 const User = require('../models/user');
 const Coub = require('../models/coub');
+const coub = require('../models/coub');
 
 aws.config.update({
     secretAccessKey: process.env.AWS_Secret_Access_Key,
@@ -285,6 +286,21 @@ const getCoubDetails = async (req,res) => {
     });
 }
 
+
+const likeCoub = async (req,res) => {
+    
+    const { coubId } = req.body;
+    const coubDetails = await Coub.findById(coubId);
+    const hearts = coubDetails.hearts;
+    const updateCoub = await Coub.findByIdAndUpdate({
+        _id : coubId
+    }, {
+        $push : { likedBy : req.user },
+        hearts : hearts+1,
+    });
+    console.log(updateCoub);
+}
+
 module.exports = {
     index,
     trim,
@@ -292,4 +308,5 @@ module.exports = {
     getAllCoubs,
     getUserAllCoubs,
     getCoubDetails,
+    likeCoub
 }
