@@ -4,14 +4,18 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+
 //Icons Import
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons';
 
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
+
 //Context Import
 import UserContext from '../../Context/UserContext';
+import OverlayContext from '../../Context/OverlayContext';
+
 
 //Styled Components Import
 import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
@@ -23,6 +27,7 @@ import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
 const Coub = ({ url, id }) => {
 
     const { user } = useContext(UserContext);
+    const { setOverlay } = useContext(OverlayContext);
 
     const [ coubDetails, setCoubDetails ] = useState({
         tags : [],
@@ -63,6 +68,11 @@ const Coub = ({ url, id }) => {
 
     const like = async (e) => {
         e.preventDefault();
+
+        if(!user.userData){
+            setOverlay("login");
+        }
+        
         let token = localStorage.getItem("auth-token");
         const likeRes = await axios.post('/api/like',  { coubId }, {
             headers : {
