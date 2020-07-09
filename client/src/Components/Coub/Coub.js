@@ -37,7 +37,13 @@ const Coub = ({ url, id }) => {
             const coubRes = await axios.get(`/api/getCoubDetails?coubid=${coubId}`);
             setCoubDetails(coubRes.data.coubDetails);
             setUserDetails(coubRes.data.userDetails);
-            
+        }
+        getCoubDetails();
+    },[])
+
+    useEffect(() => {
+
+        const checkLikeByMe = () => {
             if(user.userData){
                 if(coubDetails.likedBy.includes(user.userData.id)){
                     setLikeByMe(true);                
@@ -46,11 +52,15 @@ const Coub = ({ url, id }) => {
                     setLikeByMe(false);
                 }
             }
+            else{
+                setLikeByMe(false);
+            }
         }
+        
+        checkLikeByMe();
 
-        getCoubDetails();
+    },[user])
 
-    },[userDetails])
 
     const like = async (e) => {
         e.preventDefault();
@@ -63,7 +73,7 @@ const Coub = ({ url, id }) => {
     }
 
     const dislike = async (e) => {
-        
+
     }
 
     return (
