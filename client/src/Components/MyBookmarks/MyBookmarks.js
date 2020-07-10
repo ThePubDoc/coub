@@ -11,7 +11,7 @@ import Coub from '../Coub/Coub';
 import axios from 'axios';
 
 
-const Likes = () => {
+const MyBookmarks = () => {
 
     let token = localStorage.getItem("auth-token");
 
@@ -21,27 +21,26 @@ const Likes = () => {
     const [ hasMore, setHasMore ] = useState(true);
 
     useEffect(() => {
-        const fectchMyLikes = async () => {
-            const myLikedRes = await axios.get(`/api/myLikes?page=${page}&limit=${limit}`,{
+        const fectchMyBookmarks = async () => {
+            const myBookmarksRes = await axios.get(`/api/myBookmarks?page=${page}&limit=${limit}`,{
                 headers : { "x-auth-token" : token }
             } )
-            setCoubs(coubs.concat(myLikedRes.data.results));
+            setCoubs(coubs.concat(myBookmarksRes.data.results));
             setPage(page+1);
-            if(!myLikedRes.data.next){
+            if(!myBookmarksRes.data.next){
                 setHasMore(false)
             }
         }
-        fectchMyLikes();
+        fectchMyBookmarks();
     },[])
 
-    const fetchMoreLikes = async () => {
-        console.log("age ka fetch")
+    const fetchMoreBookmarks = async () => {
         if(hasMore){
-            const myLikedRes = await axios.get(`/api/myLikes?page=${page}&limit=${limit}`,{
+            const myBookmarksRes = await axios.get(`/api/myBookmarks?page=${page}&limit=${limit}`,{
                 headers : { "x-auth-token" : token }
             });
-            setCoubs(coubs.concat(myLikedRes.data.results));
-            if(!myLikedRes.data.next){
+            setCoubs(coubs.concat(myBookmarksRes.data.results));
+            if(!myBookmarksRes.data.next){
                 setHasMore(false)
             }
             else {
@@ -55,7 +54,7 @@ const Likes = () => {
         <StyledCoubsSectionHero>
             <InfiniteScroll
                 dataLength = { coubs.length }
-                next = { fetchMoreLikes }
+                next = { fetchMoreBookmarks }
                 hasMore = { hasMore }
                 loader = {<h4>Loading</h4>}
             >
@@ -68,4 +67,4 @@ const Likes = () => {
     )
 }
 
-export default Likes
+export default MyBookmarks

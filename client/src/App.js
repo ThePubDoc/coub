@@ -10,7 +10,8 @@ import SideNav from './Components/SideNav/SideNav';
 import Home from './Components/Home/Home';
 import CreateCoub from './Components/CreateCoub/CreateCoub';
 import User from './Components/Profile/User';
-import Likes from './Components/Likes/Likes';
+import MyLikes from './Components/MyLikes/MyLikes';
+import MyBookmarks from './Components/MyBookmarks/MyBookmarks';
 
 import UserContext from './Context/UserContext';
 import SideNavContex from './Context/SideNavContext';
@@ -88,7 +89,8 @@ function App() {
                   <Switch>
                     <Route path = "/" exact component = { Home }></Route>
                     <Route path = "/create" component = { CreateCoub }></Route>
-                    <Route path = "/myLikes" component = { Likes }></Route>
+                    <Route path = "/myLikes" component = { MyLikes }></Route>
+                    <Route path = "/myBookmarks" component = { MyBookmarks }></Route>
                     <Route path = "/:username" component = { User }></Route>
                   </Switch>
                 </div>

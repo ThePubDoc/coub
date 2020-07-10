@@ -89,7 +89,7 @@ const SideNav = () => {
                 </StyledSideNavItems>
                 <StyledSideNavItems>
                     <StyledIcons icon = { faBookmark }/>
-                    <p>Bookmarks</p>
+                    <Link to = "/myBookmarks">My Bookmarks</Link>
                 </StyledSideNavItems>
 
                 <StyledLine/>

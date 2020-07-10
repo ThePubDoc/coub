@@ -47,5 +47,6 @@ router.route('/dislike').post(auth, mainController.dislikeCoub);
 
 router.route('/myLikes').get(auth, userController.getMyLikes);
 router.route('/bookmark').post(auth, userController.bookmark);
+router.route('/myBookmarks').get(auth, userController.getMyBookmarks);
 
 module.exports = router;

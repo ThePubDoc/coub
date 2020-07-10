@@ -237,6 +237,45 @@ const bookmark = async (req,res) => {
 }
 
 
+const getMyBookmarks = async (req,res) => {
+    const user = await User.findById(req.user);
+
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page-1)*limit;
+    const lastIndex = page*limit;
+
+    const bookmarks = user.bookmarks;
+    const requiredCoubs = bookmarks.slice(startIndex,lastIndex);
+    
+    const queryResult = {};
+
+    const coubs = [];
+    for(let i=0;i<requiredCoubs.length;i++){
+        let coub = await Coub.findById(requiredCoubs[i])
+        coubs.push(coub);
+    }
+
+    if(lastIndex < bookmarks.length){
+        queryResult.next = {
+            page : page + 1,
+            limit : limit,
+        }
+    }
+
+    if( startIndex > 0) {
+        queryResult.previous = {
+            page : page -1,
+            limit : limit,
+        }
+    }
+    
+    queryResult.results = coubs;
+    res.json(queryResult);
+}
+
+
 module.exports = {
     signup,
     login,
@@ -245,4 +284,5 @@ module.exports = {
     getMyCoubs,
     getMyLikes,
     bookmark,
+    getMyBookmarks,
 }
