@@ -220,11 +220,29 @@ const getMyLikes = async (req,res) => {
     res.json(queryResult);
 }
 
+
+const bookmark = async (req,res) => {
+    const user = req.user;
+    const {coubId} = req.body;
+
+    const updateUser = await User.findByIdAndUpdate({
+        _id : user
+    }, {
+        $push : {
+            bookmarks : coubId
+        }
+    })
+
+    res.json(true)
+}
+
+
 module.exports = {
     signup,
     login,
     isTokenValid,
     user,
     getMyCoubs,
-    getMyLikes
+    getMyLikes,
+    bookmark,
 }

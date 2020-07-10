@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import { BsBookmark } from 'react-icons/bs';
 
 export const StyledCoubHero = styled.div`
     margin: 3rem 0;
+    position : relative;
 `
 
 export const StyledVideo = styled.video`
@@ -101,3 +104,23 @@ export const StyledTag = styled.p`
     border-radius: 10px; 
 `
 
+export const StyledPlayer = styled(ReactPlayer)`
+    
+`
+
+export const StyledBookmark = styled(BsBookmark)`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: white;
+    border : 1px solid #ffffff00;
+    padding : .5rem;
+    cursor : pointer;
+
+    &:hover {
+        background-color : black;
+        border : 1px solid black;
+        border-radius: 50%;
+    }
+`

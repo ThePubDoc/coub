@@ -21,7 +21,8 @@ import OverlayContext from '../../Context/OverlayContext';
 import { StyledCoubDetailsHero, StyledCoubHero, StyledCreator,
         StyledCreatorDetails, StyledDp, StyledDpLink, 
         StyledStat, StyledStatsHero, StyledTagsViewsHero,
-        StyledVideo, StyledViews, StyledTags, StyledTag } from './Coub.style';
+        StyledPlayer, StyledViews, StyledTags, 
+        StyledTag, StyledBookmark } from './Coub.style';
 
     
 const Coub = ({ url, id }) => {
@@ -93,15 +94,25 @@ const Coub = ({ url, id }) => {
         setLikeByMe(likeRes.data)
     }
 
+    const bookmarkCoub = async (e) => {
+        e.preventDefault();
+        let token = localStorage.getItem("auth-token");
+        const bookmarkRes = await axios.post('/api/bookmark',  { coubId }, {
+            headers : {
+                "x-auth-token" : token,
+            }
+        })
+    }
+
     return (
         <StyledCoubHero>
-            <ReactPlayer 
+            <StyledPlayer
                 width = '100%'
                 height = 'auto'
                 url = { url } 
                 controls = { true }
             />
-
+            <StyledBookmark onClick = { (e) => bookmarkCoub(e) }/>    
             <StyledCoubDetailsHero>
                 <StyledCreatorDetails>
                     
