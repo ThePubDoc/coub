@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
-import ReactPlayer from 'react-player';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faComment, faSortDown, faImage, faPlus } from '@fortawesome/free-solid-svg-icons';

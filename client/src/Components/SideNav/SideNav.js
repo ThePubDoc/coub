@@ -7,6 +7,7 @@ import { faHome, faFire, faRandom, faBars, faCircle, faGem,
 
 import { StyledSidenav, StyledSideNavItems, StyledIcons,
         StyledHeadings, StyledImages, StyledLine, StyledCommunity, StyledCommunitiesIcons } from './SideNav.style';
+import { Link } from 'react-router-dom';
 
 const SideNav = () => {
 
@@ -84,7 +85,7 @@ const SideNav = () => {
                 
                 <StyledSideNavItems>
                     <StyledIcons icon = { faHeart }/>
-                    <p>My Likes</p>
+                    <Link to = "/myLikes">My Likes</Link>
                 </StyledSideNavItems>
                 <StyledSideNavItems>
                     <StyledIcons icon = { faBookmark }/>

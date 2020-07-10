@@ -292,12 +292,20 @@ const likeCoub = async (req,res) => {
     const { coubId } = req.body;
     const coubDetails = await Coub.findById(coubId);
     const hearts = coubDetails.hearts;
+    
     const updateCoub = await Coub.findByIdAndUpdate({
         _id : coubId
     }, {
         $push : { likedBy : req.user },
         hearts : hearts+1,
     });
+
+    const updateUser = await User.findByIdAndUpdate({
+        _id : req.user
+    }, {
+        $push : { hearts : coubId }
+    });
+    
     res.json(true)
 }
 
@@ -305,12 +313,20 @@ const dislikeCoub = async (req,res) => {
     const { coubId } = req.body;
     const coubDetails = await Coub.findById(coubId);
     const hearts = coubDetails.hearts;
+    
     const updateCoub = await Coub.findByIdAndUpdate({
         _id : coubId
     }, {
         $pull : { likedBy : req.user },
         hearts : hearts-1,
     });
+
+    const updateUser = await User.findByIdAndUpdate({
+        _id : req.user
+    }, {
+        $pull : { hearts : coubId }
+    });
+    
     res.json(false)
 }
 
