@@ -56,7 +56,8 @@ const Likes = () => {
             <InfiniteScroll
                 dataLength = { coubs.length }
                 next = { fetchMoreLikes }
-                hasMore = { true }
+                hasMore = { hasMore }
+                loader = {<h4>Loading</h4>}
             >
                 { coubs.map(coub => 
                     
