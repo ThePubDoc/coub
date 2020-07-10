@@ -105,6 +105,9 @@ export const StyledTag = styled.p`
 `
 
 export const StyledPlayer = styled(ReactPlayer)`
+    video {
+        border-radius : 5px;
+    }
     
 `
 
@@ -113,6 +116,7 @@ export const StyledBookmark = styled(BsBookmark)`
     top: 1rem;
     right: 1rem;
     font-size: 1.5rem;
+    font-weight:900;
     color: white;
     border : 1px solid #ffffff00;
     padding : .5rem;

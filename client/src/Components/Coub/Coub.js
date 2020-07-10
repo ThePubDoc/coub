@@ -37,6 +37,7 @@ const Coub = ({ url, id }) => {
     const [ coubId, setCoubId ] = useState(id);
     const [ userDetails, setUserDetails ] = useState({});
     const [ likeByMe, setLikeByMe ] = useState(false);
+    const [ showBookmark, setShowBookmark ] = useState(false);
 
     useEffect(() => {
         const getCoubDetails = async () => {
@@ -105,14 +106,19 @@ const Coub = ({ url, id }) => {
     }
 
     return (
-        <StyledCoubHero>
+        <StyledCoubHero 
+            onMouseEnter = {(e) => { setShowBookmark(true)}}
+            onMouseLeave = {(e) => { setShowBookmark(false)}}
+        >
             <StyledPlayer
                 width = '100%'
                 height = 'auto'
                 url = { url } 
                 controls = { true }
             />
-            <StyledBookmark onClick = { (e) => bookmarkCoub(e) }/>    
+            { showBookmark &&
+                <StyledBookmark onClick = { (e) => bookmarkCoub(e) }/>    
+            }
             <StyledCoubDetailsHero>
                 <StyledCreatorDetails>
                     
