@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faFire, faRandom, faBars, faCircle, faGem, 
-    faUserFriends, faUser, faHeart, faBookmark } 
-    from '@fortawesome/free-solid-svg-icons';
 
-
-import { StyledSidenav, StyledSideNavItems, StyledIcons,
-        StyledHeadings, StyledImages, StyledLine, 
-        StyledCommunity, StyledCommunitiesIcons } from './SideNav.style';
+import { StyledSidenav, StyledSideNavItems, StyledHeadings, 
+        StyledImages, StyledLine, StyledCommunity, 
+        StyledCommunitiesIcons } from './SideNav.style';
 
 import { Link } from 'react-router-dom';
 
 import { StyledHomeIcon, StyledBookmarkIcon, StyledJustifyIcon, 
-        StyledRandomIcon, StyledShineIcon, StyledCircleIcon, 
+        StyledRandomIcon, StyledCircleIcon, 
         StyledUsersIcon, StyledFireIcon, StyledHeartIcon, StyledDiamondIcon} from './SideNav.style';
 
 const SideNav = () => {
@@ -92,12 +87,16 @@ const SideNav = () => {
                 
                 <StyledSideNavItems>
                     <StyledHeartIcon/>
-                    <Link to = "/myLikes">My Likes</Link>
+                    <Link to = "/myLikes">
+                        <p>My Likes</p>
+                    </Link>
                 </StyledSideNavItems>
 
                 <StyledSideNavItems>
                     <StyledBookmarkIcon/>
-                    <Link to = "/myBookmarks">My Bookmarks</Link>
+                    <Link to = "/myBookmarks">
+                        <p>My Bookmarks</p>
+                    </Link>
                 </StyledSideNavItems>
 
                 <StyledLine/>

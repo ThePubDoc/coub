@@ -189,7 +189,8 @@ export const StyledUserDp = styled.img.attrs(
         })
     )`
     border-radius: 50%;
-    height: -webkit-fill-available;
+    height: 2.5rem;
+    margin: 0 1rem;
 `
 
 export const StyledLogout = styled.div`

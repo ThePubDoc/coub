@@ -21,6 +21,7 @@ import MainContainerContext from'./Context/MainContainerContext';
 import './Styles/reset.css';
 import './Styles/root.css';
 import './App.css';
+import EditProfile from './Components/Edit/EditProfile';
 
 function App() {
   
@@ -91,6 +92,7 @@ function App() {
                     <Route path = "/create" component = { CreateCoub }></Route>
                     <Route path = "/myLikes" component = { MyLikes }></Route>
                     <Route path = "/myBookmarks" component = { MyBookmarks }></Route>
+                    <Route path = "/:username/edit" component = { EditProfile }></Route>
                     <Route path = "/:username" component = { User }></Route>
                   </Switch>
                 </div>

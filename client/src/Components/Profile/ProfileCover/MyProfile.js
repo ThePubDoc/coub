@@ -10,6 +10,7 @@ import UserContext from '../../../Context/UserContext';
 import Coub from '../../Coub/Coub';
 
 import './Cover.css';
+import { Link } from 'react-router-dom';
 
 const MyProfile = () => {
 
@@ -83,7 +84,11 @@ const MyProfile = () => {
                         <div className = "info">
                             <p>14 Followers</p>
                         </div>
-                        <FontAwesomeIcon icon = { faCog } className = "seetings" />
+
+                        <Link to = {`/${user.userData.username}/edit`}>
+                            <FontAwesomeIcon icon = { faCog } className = "seetings" />
+                        </Link>
+                        
                         <button>
                             <FontAwesomeIcon icon = { faComment }/>
                             <p>Message</p>
