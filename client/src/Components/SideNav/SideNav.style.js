@@ -1,6 +1,73 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { AiOutlineHome, AiOutlineFire, AiOutlineHeart } from 'react-icons/ai';
+import { FaRandom } from 'react-icons/fa';
+import { BsJustify, BsCircle, BsBookmark } from 'react-icons/bs';
+import { GrDiamond } from 'react-icons/gr';
+import { GiCrystalShine } from 'react-icons/gi';
+import { FiUsers } from 'react-icons/fi';
+
+export const StyledHomeIcon = styled(AiOutlineHome)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledFireIcon = styled(AiOutlineFire)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledHeartIcon = styled(AiOutlineHeart)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledRandomIcon = styled(FaRandom)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledJustifyIcon = styled(BsJustify)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledCircleIcon = styled(BsCircle)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledBookmarkIcon = styled(BsBookmark)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledDiamondIcon = styled(GrDiamond)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledShineIcon = styled(GiCrystalShine)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
+export const StyledUsersIcon = styled(FiUsers)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+`
+
 export const StyledSidenav = styled.div`
     position: fixed;
     display: flex;

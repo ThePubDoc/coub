@@ -6,8 +6,14 @@ import { faHome, faFire, faRandom, faBars, faCircle, faGem,
 
 
 import { StyledSidenav, StyledSideNavItems, StyledIcons,
-        StyledHeadings, StyledImages, StyledLine, StyledCommunity, StyledCommunitiesIcons } from './SideNav.style';
+        StyledHeadings, StyledImages, StyledLine, 
+        StyledCommunity, StyledCommunitiesIcons } from './SideNav.style';
+
 import { Link } from 'react-router-dom';
+
+import { StyledHomeIcon, StyledBookmarkIcon, StyledJustifyIcon, 
+        StyledRandomIcon, StyledShineIcon, StyledCircleIcon, 
+        StyledUsersIcon, StyledFireIcon, StyledHeartIcon, StyledDiamondIcon} from './SideNav.style';
 
 const SideNav = () => {
 
@@ -23,17 +29,17 @@ const SideNav = () => {
         <StyledSidenav>
             <ul>
                 <StyledSideNavItems>
-                    <StyledIcons icon = { faHome }/>
+                    <StyledHomeIcon/>
                     <p>Home</p>
                 </StyledSideNavItems>
 
                 <StyledSideNavItems>
-                    <StyledIcons icon = { faFire }/>
+                    <StyledFireIcon/>
                     <p>Hot</p>
                 </StyledSideNavItems>
 
                 <StyledSideNavItems>
-                    <StyledIcons icon = { faRandom }/>
+                    <StyledRandomIcon/>
                     <p>Random</p>
                 </StyledSideNavItems>
                 
@@ -47,31 +53,32 @@ const SideNav = () => {
                 { !showMore && 
                     <div>
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faBars }/>
+                            <StyledJustifyIcon/>
                             <p>Stories</p>
                         </StyledSideNavItems>
                         
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faCircle }/>
+                            <StyledCircleIcon/>
                             <p>Weekly</p>
                         </StyledSideNavItems>
                         
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faGem }/>
+                            <StyledDiamondIcon/>
                             <p>Coub Picks</p>
                         </StyledSideNavItems>
+
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faFire }/>
+                            <StyledFireIcon/>
                             <p>Best Of The Year</p>
                         </StyledSideNavItems>
                         
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faUserFriends }/>
+                            <StyledUsersIcon/>
                             <p>Who To Follow</p>
                         </StyledSideNavItems>
                         
                         <StyledSideNavItems>
-                            <StyledIcons icon = { faUser }/>
+                            <StyledUsersIcon/>
                             <p>Featured Channels</p>
                         </StyledSideNavItems>
 
@@ -84,11 +91,12 @@ const SideNav = () => {
                 <StyledLine/>
                 
                 <StyledSideNavItems>
-                    <StyledIcons icon = { faHeart }/>
+                    <StyledHeartIcon/>
                     <Link to = "/myLikes">My Likes</Link>
                 </StyledSideNavItems>
+
                 <StyledSideNavItems>
-                    <StyledIcons icon = { faBookmark }/>
+                    <StyledBookmarkIcon/>
                     <Link to = "/myBookmarks">My Bookmarks</Link>
                 </StyledSideNavItems>
 
