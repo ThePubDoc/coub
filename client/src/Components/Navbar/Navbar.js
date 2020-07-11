@@ -18,7 +18,8 @@ import {
     StyledNav, StyledNavbarElementsContainer, StyledImg, 
     StyledSearchBar, StyledSearchIcon, StyledInput,
     StyledDropdown, StyledPlusIcon, StyledUser,
-    StyledUserDp, StyledUserIcons } from './Navbar.style';
+    StyledUserDp, StyledUserIcons,
+    StyledUsersIcon, StyledCommentIcon, StyledBellIcon } from './Navbar.style';
 
 const Navbar = ({ Logo }) => {
 
@@ -67,9 +68,9 @@ const Navbar = ({ Logo }) => {
                     </>
                     ) : (
                         <>
-                            <StyledUserIcons icon = { faComment }/>
-                            <StyledUserIcons icon = { faUsers }/>
-                            <StyledUserIcons icon = { faBell }/>
+                            <StyledCommentIcon/>
+                            <StyledUsersIcon/>
+                            <StyledBellIcon/>
 
                             <StyledUser>
                                 <StyledUserDp src = { user.userData.dp }/>

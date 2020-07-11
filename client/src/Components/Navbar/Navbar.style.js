@@ -2,6 +2,30 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 
+import { FiUsers } from 'react-icons/fi';
+import { FaRegComment, FaRegBell } from 'react-icons/fa';
+
+export const StyledUsersIcon = styled(FiUsers)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+    margin : 0 1rem;
+`
+
+export const StyledCommentIcon = styled(FaRegComment)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+    margin : 0 1rem;
+`
+
+export const StyledBellIcon = styled(FaRegBell)`
+    color : #999999;
+    width : 24px;
+    height : 24px;
+    margin : 0 1rem;
+`
+
 export const StyledNav =  styled.div`
     display: flex;
     flex-direction: row;
