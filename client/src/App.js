@@ -29,7 +29,10 @@ function App() {
   const [ sideNav, setSideNav ] = useState(true);
   const [ user, setUser ] = useState({
     token : undefined,
-    userData : undefined,
+    userData : {
+      username : '',
+      dp : ''
+    },
   });
   const [ mainContainerClass, setMainContainerClass ] = useState("main-container margin-left-16vw");
 

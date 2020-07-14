@@ -17,6 +17,7 @@ const User = () => {
             if(user.userData.username === username){
                 return <MyProfile/>
             }
+            
         }
         return <UserProfile/>
     }
