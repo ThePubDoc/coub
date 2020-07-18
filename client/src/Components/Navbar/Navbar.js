@@ -11,6 +11,7 @@ import Signup from '../Overlays/Signup';
 import Login from '../Overlays/Login';
 import UserDropdown from './UserDropdown';
 
+import SideNavContext from '../../Context/SideNavContext';
 import UserContext from '../../Context/UserContext';
 import OverlayContext from '../../Context/OverlayContext';
 
@@ -26,11 +27,12 @@ const Navbar = ({ Logo }) => {
     
     const { user } = useContext(UserContext);
     const { overlay, setOverlay } = useContext(OverlayContext);
+    const { sideNav, setSideNav } = useContext(SideNavContext);
 
     return (
         <StyledNav>
             <StyledNavbarElementsContainer>
-                <Link to = "/">
+                <Link to = "/" >
                     <StyledImg src = { Logo }/>          
                 </Link>
             

@@ -38,7 +38,7 @@ function App() {
 
   //check for logged in user
   useEffect(() => {
-    console.log("login check")
+    
     const checkLogin = async () => {
       let token = localStorage.getItem("auth-token");
       
